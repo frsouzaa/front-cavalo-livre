@@ -1,0 +1,42 @@
+.div-card-produto {
+    min-height: 350px;
+    height: fit-content;
+    padding: 10px 10px;
+}
+
+.produto:hover {
+    transition: .1s ease all;
+    cursor: pointer;
+    transform: scale(1.004);
+}
+
+.produto {
+    width: 100%;
+    height: 100%;
+    /* background-color: #e9e9e9; */
+    padding: 20px 20px 10px 20px;
+}
+
+.div-imagem {
+    width: 100%;
+    height: 13em;
+    background-color: rgb(160, 160, 160);
+}
+
+.interacao {
+    padding: 5px;
+    margin: 0;
+    width: 100%;
+    height: 30%;
+    /* background-color: rgb(28, 28, 28); */
+}
+
+.informacoes, .botao-comprar {
+    height: 100%;
+    padding: 0;
+}
+
+.nome-produto, .preco-produto {
+    height: 50%;    
+    width: 100%;
+}
