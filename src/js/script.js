@@ -1,4 +1,9 @@
 function carregar_conteudo() {
+    gerar_grid_produtos();
+    gerar_lista_filtros();
+}
+
+function gerar_grid_produtos() {
     const conteudo = document.getElementsByClassName("produtos")[0];
     const linhas = 7; 
     for (let i = 0; i < linhas; i++) {
@@ -36,6 +41,24 @@ function gerar_cards(quantidade) {
     return cards;
 }
 
+function gerar_lista_filtros() {
+    const lista = document.getElementById("lista-filtros");
+    const filtros = ["Lorem", "ipsum", "dolor", "adipisicing", "Minima", "eveniet"]
+
+    for (let i = 0; i < filtros.length; i++) {
+        lista.innerHTML += `
+        <button type="button" class="list-group-item list-group-item-action" onclick="habilitar_filtro(this)">
+            ${filtros[i]}
+        </button>
+        `;
+    }
+}
+
 function abrir_produto() {
-    console.log("oi")
+    console.log("todo");
+}
+
+function habilitar_filtro(element) {
+    //element.classList.toggle("filtro-ativo");
+    element.classList.toggle("active");
 }
