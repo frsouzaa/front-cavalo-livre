@@ -1,0 +1,13 @@
+.modal-header {
+    border-bottom: none !important;
+    padding-top: 30px !important;
+    padding-bottom: 0 !important;
+}
+
+.campo-modal {
+    font-size: 1.2em;
+}
+
+.link-modal {
+    margin-top: 0.6em;
+}
