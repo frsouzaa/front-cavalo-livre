@@ -1,6 +1,21 @@
 function carregar_conteudo() {
     gerar_grid_produtos();
     gerar_lista_filtros();
+
+
+    
+
+      new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'),
+      {
+        allowInputToggle: false,
+        // localization["locale"]: "pt-BR"
+      })
+
+      
+
+    
+
+
 }
 
 function gerar_grid_produtos() {
@@ -61,4 +76,14 @@ function abrir_produto() {
 function habilitar_filtro(element) {
     //element.classList.toggle("filtro-ativo");
     element.classList.toggle("active");
+}
+
+function focus_icon_by_class(icon) {
+    const element = document.getElementsByClassName(icon)[0]
+    element.style = "border-color: #198754 !important"
+}
+
+function blur_icon_by_class(icon) {
+    const element = document.getElementsByClassName(icon)[0]
+    element.style = "border-color: #dee2e6 !important"
 }

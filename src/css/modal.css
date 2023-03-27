@@ -6,8 +6,27 @@
 
 .campo-modal {
     font-size: 1.2em;
+    box-shadow: none !important;
+}
+
+.campo-modal:focus {
+    border-color: #198754 !important;
 }
 
 .link-modal {
     margin-top: 0.6em;
+}
+
+.btn-outline-secondary {
+    border-color: #dee2e6 !important;
+    border-left: none !important;
+    box-shadow: none !important;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #198754 !important;
+}
+
+#data-cadastro {
+    border-right: none !important;
 }
