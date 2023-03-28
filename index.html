@@ -15,23 +15,23 @@
         <link rel="stylesheet" href="src/css/card.css">
         <link rel="stylesheet" href="src/css/filtros.css">
         <link rel="stylesheet" href="src/css/modal.css">
+        <!-- moment -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
+        <!-- Popperjs -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+        <!-- Tempus Dominus JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.4.4/dist/js/tempus-dominus.min.js" crossorigin="anonymous"></script>
+        <!-- Tempus Dominus Styles -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.4.4/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
         <!-- JS -->
         <script type="" src="src/js/script.js"></script>
-
-
-        <!-- Popperjs -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-<!-- Tempus Dominus JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.4.4/dist/js/tempus-dominus.min.js" crossorigin="anonymous"></script>
-
-<!-- Tempus Dominus Styles -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.4.4/dist/css/tempus-dominus.min.css" crossorigin="anonymous">
 
     </head>
     <body onload="carregar_conteudo()">
         <nav class="navbar navbar-expand-lg bg-success">
             <div class="container">
-                <a href="#" class="navbar-brand text-light">LOGO</a>
+                <a href="#" class="navbar-brand text-light logo">LOGO</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -148,7 +148,7 @@
 
                         </div>
                         <div class="col-md-10">
-                            <h2 class="modal-title text-center" id="exampleModalCenterTitle">LOGO</h2>
+                            <h2 class="modal-title text-center logo">LOGO</h2>
                         </div>
                         <div class="col-md-1">
                             <button type="button" class="close btn-close text-reset" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -165,7 +165,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="senha-login"></label>
-                                    <input type="password" class="form-control campo-modal" id="senha-login" aria-describedby="emailHelp" placeholder="Senha">
+                                    <input type="password" class="form-control campo-modal" id="senha-login" placeholder="Senha">
                                 </div>
                             </div>
                         </div>
@@ -177,12 +177,12 @@
                         <br>
                         <div class="row">
                             <div class="col-md-1"></div>
-                            <button type="button" class="btn btn-success col-md-10">Entrar</button>
+                            <button type="button" class="btn btn-success col-md-10 btn-lg">Entrar</button>
                             <div class="col-md-1"></div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <p class="link-secondary text-center link-modal">Não tem cadastro? <a href="#" class="link-secondary">cadastre-se</a></p>
+                                <p class="link-secondary text-center link-modal">Não é cadastrado? <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#cadastro">Cadastre-se</a></p>
                             </div>
                         </div>
                     </div>
@@ -199,7 +199,7 @@
 
                         </div>
                         <div class="col-md-10">
-                            <h2 class="modal-title text-center" id="exampleModalCenterTitle">LOGO</h2>
+                            <h2 class="modal-title text-center logo">LOGO</h2>
                         </div>
                         <div class="col-md-1">
                             <button type="button" class="close btn-close text-reset" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -209,14 +209,14 @@
                         <div class="row">
                             <div class="form-group">
                                 <label for="nome-cadastro"></label>
-                                <input type="text" class="form-control campo-modal" id="nome-cadastro" aria-describedby="emailHelp" placeholder="Nome">
+                                <input type="text" class="form-control campo-modal" id="nome-cadastro" placeholder="Nome">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="sobrenome-cadastro"></label>
-                                    <input type="password" class="form-control campo-modal" id="sobrenome-cadastro" aria-describedby="emailHelp" placeholder="Sobrenome">
+                                    <input type="text" class="form-control campo-modal" id="sobrenome-cadastro" placeholder="Sobrenome">
                                 </div>
                             </div>
                         </div>
@@ -224,7 +224,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="cpf-cadastro"></label>
-                                    <input type="password" class="form-control campo-modal" id="cpf-cadastro" aria-describedby="emailHelp" placeholder="CPF">
+                                    <input type="text" class="form-control campo-modal" id="cpf-cadastro" placeholder="CPF">
                                 </div>
                             </div>
                         </div>
@@ -232,7 +232,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="email-cadastro"></label>
-                                    <input type="password" class="form-control campo-modal" id="email-cadastro" aria-describedby="emailHelp" placeholder="Endereço de e-mail">
+                                    <input type="text" class="form-control campo-modal" id="email-cadastro" aria-describedby="emailHelp" placeholder="Endereço de e-mail">
                                 </div>
                             </div>
                         </div>
@@ -240,7 +240,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="senha-cadastro"></label>
-                                    <input type="password" class="form-control campo-modal" id="senha-cadastro" aria-describedby="emailHelp" placeholder="Senha">
+                                    <input type="password" class="form-control campo-modal" id="senha-cadastro" placeholder="Senha">
                                 </div>
                             </div>
                         </div>
@@ -248,7 +248,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="confirmar-senha-cadastro"></label>
-                                    <input type="password" class="form-control campo-modal" id="confirmar-senha-cadastro" aria-describedby="emailHelp" placeholder="Confirmar senha">
+                                    <input type="password" class="form-control campo-modal" id="confirmar-senha-cadastro" placeholder="Confirmar senha">
                                 </div>
                             </div>
                         </div>
@@ -256,32 +256,48 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="data-cadastro"></label>
-                                    <input type="text" id="datetimepicker1" class="form-control campo-modal datepicker" placeholder="Data de nascimento" onfocus="focus_icon_by_class('btn-outline-secondary')" onblur="blur_icon_by_class('btn-outline-secondary')"/>
+                                    <input type="text" id="datetimepicker1" class="form-control campo-modal datepicker" placeholder="Data de nascimento"/>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="senha"></label>
-                                    <input type="password" class="form-control campo-modal" id="senha" aria-describedby="emailHelp" placeholder="Senha">
+                                    <label for="pais"></label>
+                                    <select type="text" class="form-control campo-modal" id="pais">
+                                        
+                                    </select>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <p class="text-end link-modal"><a href="#" class="link-secondary">Esqueci minha senha</a></p>
                             </div>
                         </div>
                         <br>
                         <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" class="btn-check" name="options-outlined" id="feminino" autocomplete="off">
+                                <label class="btn btn-outline-success btn-sexo" for="feminino">Feminino</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" class="btn-check" name="options-outlined" id="masculino" autocomplete="off">
+                                <label class="btn btn-outline-success btn-sexo" for="masculino">Masculino</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input class="form-check-input" type="radio" name="options-outlined" id="nao-informar">
+                                <label class="form-check-label" for="nao-informar">Prefiro não informar</label>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
                             <div class="col-md-1"></div>
-                            <button type="button" class="btn btn-success col-md-10">Entrar</button>
+                            <button type="button" class="btn btn-success col-md-10 btn-lg">Fazer Cadastro</button>
                             <div class="col-md-1"></div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <p class="link-secondary text-center link-modal">Não tem cadastro? <a class="link-secondary">cadastre-se</a></p>
+                                <p class="link-secondary text-center link-modal">Já é cadastrado? <a href="#" class="link-secondary" data-bs-toggle="modal" data-bs-target="#login">Fazer login</a></p>
                             </div>
                         </div>
                     </div>
