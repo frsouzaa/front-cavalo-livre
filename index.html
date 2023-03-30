@@ -60,18 +60,16 @@
                     <div class="col-md-1">
                     </div>
 
-                    <form class="form-inline col-md-4">
-                        <div class="input-group">
-                            <input id="input-pesquisar" type="text" class="form-control bg-light text-dark" placeholder="Pesquisar" aria-label="Pesquisar" aria-describedby="basic-addon1">
-                            <div class="input-group-prepend">
-                                <button  id="button-pesquisar" class="input-group-text bg-light">
-                                    <span class="material-symbols-outlined text-dark">
-                                        search
-                                        </span>
-                                </button>
-                            </div>
+                    <div class="input-group">
+                        <input id="input-pesquisar" type="text" class="form-control bg-light text-dark" placeholder="Pesquisar" aria-label="Pesquisar" aria-describedby="basic-addon1" onkeypress="busca(event.key, this)">
+                        <div class="input-group-prepend">
+                            <button  id="button-pesquisar" class="input-group-text bg-light">
+                                <span class="material-symbols-outlined text-dark">
+                                    search
+                                </span>
+                            </button>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -81,7 +79,7 @@
         <br>
 
         <!-- Produtos -->
-        <div id="content" class="container">
+        <div id="grid-produtos" class="container">
             <div class="row">
                 <!-- <div class="col-md-1">
 
@@ -91,26 +89,11 @@
                         Ver Filtros
                     </button>
                 </div>
-                <div class="produtos col-md-9">
-                    <!-- <div class="row">
-                        <div class="div-card-produto col-md-4" onclick="abrir_produto()">
-                            <div class="produto">
-                                <div class="div-imagem">
-        
-                                </div>
-                                <div class="interacao row">
-                                    <div class="informacoes col-md">                                    
-                                        <div class="nome-produto text-wrap fs-5">
-                                            Lorem ipsum dolor sit amet consectetur
-                                        </div>
-                                        <div class="preco-produto text-wrap text-uppercase fs-4">
-                                            R$ 0,00
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                <div id="produtos" class="col-md-9 d-block">
+
+                </div>
+                <div id="produtos-busca" class="col-md-9 d-none">
+
                 </div>
             </div>
         </div>

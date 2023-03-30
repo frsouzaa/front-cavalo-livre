@@ -1,6 +1,10 @@
 function carregar_conteudo() {
+    const produtos = get_produtos();
+    localStorage.removeItem('produtos');
+    localStorage.setItem("produtos", JSON.stringify(produtos));
     gerar_grid_produtos();
     gerar_lista_filtros();
+    montar_paises()
 
 
     
@@ -16,27 +20,64 @@ function carregar_conteudo() {
     })
     
     
-    montar_paises()
 
 }
 
+function get_produtos() {
+    // todo
+
+    return [
+        {
+            id: "produto-1",
+            nome: "Produto 1",
+            preco: 10.0,
+            categorias: []
+        },
+        {
+            id: "teste-2",
+            nome: "Teste 2",
+            preco: 20.0,
+            categorias: []
+        },
+        {
+            id: "teste-3",
+            nome: "Teste 3",
+            preco: 30.0,
+            categorias: []
+        },
+        {
+            id: "produto-2",
+            nome: "Produto 2",
+            preco: 30.0,
+            categorias: []
+        }
+    ]
+}
+
 function gerar_grid_produtos() {
-    const conteudo = document.getElementsByClassName("produtos")[0];
-    const linhas = 7; 
+    const colunas = 3;
+    gerar_grid("produtos", JSON.parse(localStorage.getItem('produtos')), colunas)
+}
+
+function gerar_grid(id_grid, produtos, quant_colunas) {
+    const conteudo = document.getElementById(id_grid);
+    const quant_produtos = produtos.length;
+    const colunas = quant_colunas;
+    const linhas = Math.ceil(quant_produtos/colunas); 
     for (let i = 0; i < linhas; i++) {
         conteudo.innerHTML += `
         <div class="row">
-            ${gerar_cards(3)}
+            ${gerar_cards(produtos.slice(colunas*i, (colunas*i)+colunas))}
         </div>
         `;
     }
 }
 
-function gerar_cards(quantidade) {
+function gerar_cards(produtos) {
     let cards = ``;
-    for (let i = 0; i < quantidade; i++) {
+    for (let i = 0; i < produtos.length; i++) {
         cards = ` ${cards}
-        <div class="div-card-produto col-md-4" onclick="abrir_produto()">
+        <div class="div-card-produto col-md-4 d-block ${produtos[i].id}" onclick="abrir_produto()">
             <div class="produto">
                 <div class="div-imagem">
 
@@ -44,10 +85,10 @@ function gerar_cards(quantidade) {
                 <div class="interacao row">
                     <div class="informacoes col-md">                                    
                         <div class="nome-produto text-wrap fs-5">
-                            Lorem ipsum dolor sit amet consectetur
+                            ${produtos[i].nome}
                         </div>
                         <div class="preco-produto text-wrap text-uppercase fs-4">
-                            R$ 0,00
+                            R$ ${produtos[i].preco}
                         </div>
                     </div>
                 </div>
@@ -88,4 +129,53 @@ function montar_paises() {
         select_paises.add(option);
     }
     select_paises.value = "Brasil"
+}
+
+function busca(key, elemento) {
+    if (key !== "Enter") {
+        return;
+    }
+    
+    const termo_buscado = elemento.value;
+
+    const div_produtos_busca = document.getElementById("produtos-busca")
+    const div_produtos = document.getElementById("produtos")
+    div_produtos_busca.innerHTML = "";
+    if (!termo_buscado) {
+        div_produtos_busca.classList.add("d-none");
+        div_produtos_busca.classList.remove("d-block");
+        div_produtos.classList.add("d-block");
+        div_produtos.classList.remove("d-none");
+        return;
+    }
+
+    const produtos = JSON.parse(localStorage.getItem('produtos'));
+    
+    let produtos_filtrados = [];
+    
+    produtos.forEach((produto) => {
+        const nome_produto = produto.nome.toLowerCase();
+        if (nome_produto.includes(termo_buscado.toLocaleLowerCase())) {
+            produtos_filtrados.push(produto);
+        }
+    });
+    
+
+    const colunas = 3;
+    div_produtos_busca.innerHTML = `
+    <div class="row">
+        <h4 id="titulo-busca">
+            <span id="icone-busca" class="material-symbols-outlined text-dark align-middle">
+                search
+            </span>
+            Busca por: '${termo_buscado}'
+        </h4>
+    </div>
+    `;
+    gerar_grid("produtos-busca", produtos_filtrados, colunas)
+
+    div_produtos_busca.classList.add("d-block");
+    div_produtos_busca.classList.remove("d-none");
+    div_produtos.classList.add("d-none");
+    div_produtos.classList.remove("d-block");
 }
