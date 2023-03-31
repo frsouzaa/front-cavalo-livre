@@ -84,13 +84,13 @@ function gerar_cards(produtos) {
     let cards = ``;
     for (let i = 0; i < produtos.length; i++) {
         cards = ` ${cards}
-        <div class="div-card-produto col-lg-4 col-md-6 d-block col-sm-12" onclick="abrir_produto(this)" name="${produtos[i].id}">
+        <div class="div-card-produto col-12 col-md-6 col-lg-4 d-block" onclick="abrir_produto(this)" name="${produtos[i].id}">
             <div class="produto">
                 <div class="div-imagem">
                     <img class="imagem" src="${produtos[i].url}">
                 </div>
                 <div class="interacao row">
-                    <div class="informacoes col-md-12 col-sm-12">                                    
+                    <div class="informacoes col-12">                                    
                         <div class="nome-produto text-wrap fs-5">
                             ${produtos[i].nome}
                         </div>

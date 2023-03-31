@@ -2,24 +2,6 @@ body {
     height: 100vh;
 }
 
-#input-pesquisar {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-right: none;
-    box-shadow: none !important;
-    /* width: 20vw; */
-}
-
-#input-pesquisar:focus {
-    border-color: #dee2e6;
-}
-
-#button-pesquisar {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-left: none;
-}
-
 #tudo {
     display: flex;
     flex-flow: column;
