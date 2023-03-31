@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="src/css/card.css">
         <link rel="stylesheet" href="src/css/filtros.css">
         <link rel="stylesheet" href="src/css/modal.css">
+        <link rel="stylesheet" href="src/css/footer.css">
         <!-- moment -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/pt-br.js"></script>
@@ -29,73 +30,111 @@
 
     </head>
     <body onload="carregar_conteudo()">
-        <nav class="navbar navbar-expand-lg bg-success">
-            <div class="container">
-                <a href="#" class="navbar-brand text-light logo">LOGO</a>
+        <div id="tudo">
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="navbar-collapse" id="navbarNavAltMarkup">
-                    <div id="menus" class="navbar-nav col-md-4">
-                        <a class="nav-link text-light" href="#">Início </a>
-                        <a class="nav-link text-light" href="#">Carrinho</a>
-                        <a class="nav-link text-light" href="#" data-bs-toggle="modal" data-bs-target="#login">Perfil</a>
+            <nav class="navbar navbar-expand-lg bg-success">
+                <div class="container">
+                    <a href="#" class="navbar-brand text-light logo">LOGO</a>
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="navbar-collapse" id="navbarNavAltMarkup">
+                        <div id="menus" class="navbar-nav col-md-4">
+                            <a class="nav-link text-light" href="#">Início </a>
+                            <a class="nav-link text-light" href="#">Carrinho</a>
+                            <a class="nav-link text-light" href="#" data-bs-toggle="modal" data-bs-target="#login">Perfil</a>
+                        </div>
+    
+                        <div class="col-md-3">
+                            <marquee class="text-light align-middle"> 
+                                <b>
+                                    <span class="material-symbols-outlined align-middle">
+                                        nature
+                                    </span>
+                                    <span class="align-middle">Compre aqui os melhores produtos agrícolas! </span>
+                                    <span class="material-symbols-outlined align-middle">
+                                        agriculture
+                                    </span>
+                                </b>
+                            </marquee>
+                        </div>
+                        <div class="col-md-1">
+                        </div>
+    
+                        <div class="input-group">
+                            <input id="input-pesquisar" type="text" class="form-control bg-light text-dark" placeholder="Pesquisar" aria-label="Pesquisar" aria-describedby="basic-addon1" onkeypress="busca(event.key, this)">
+                            <div class="input-group-prepend">
+                                <button  id="button-pesquisar" class="input-group-text bg-light">
+                                    <span class="material-symbols-outlined text-dark">
+                                        search
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </nav>
+    
+            <br>
+            <br>
+            <br>
+    
+            <div id="main" class="container">
+                <!-- Detalhes Produto -->
+                <div id="detalhes-produto">
+                    
+                </div>
 
-                    <div class="col-md-3">
-                        <marquee class="text-light align-middle"> 
-                            <b>
-                                <span class="material-symbols-outlined align-middle">
-                                    nature
-                                </span>
-                                <span class="align-middle">Compre aqui os melhores produtos agrícolas! </span>
-                                <span class="material-symbols-outlined align-middle">
-                                    agriculture
-                                </span>
-                            </b>
-                        </marquee>
-                    </div>
-                    <div class="col-md-1">
-                    </div>
-
-                    <div class="input-group">
-                        <input id="input-pesquisar" type="text" class="form-control bg-light text-dark" placeholder="Pesquisar" aria-label="Pesquisar" aria-describedby="basic-addon1" onkeypress="busca(event.key, this)">
-                        <div class="input-group-prepend">
-                            <button  id="button-pesquisar" class="input-group-text bg-light">
-                                <span class="material-symbols-outlined text-dark">
-                                    search
-                                </span>
+                <!-- Produtos -->
+                <div id="grid-produtos" class="container">
+                    <div class="row">
+                        <!-- <div class="col-md-1">
+        
+                        </div> -->
+                        <div class="col-md-3">
+                            <button class="btn-filtros btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
+                                Ver Filtros
                             </button>
+                        </div>
+                        <div id="produtos" class="col-md-9 d-block">
+        
+                        </div>
+                        <div id="produtos-busca" class="col-md-9 d-none">
+        
                         </div>
                     </div>
                 </div>
             </div>
-        </nav>
-
-        <br>
-        <br>
-        <br>
-
-        <!-- Produtos -->
-        <div id="grid-produtos" class="container">
-            <div class="row">
-                <!-- <div class="col-md-1">
-
-                </div> -->
-                <div class="col-md-3">
-                    <button class="btn-filtros btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#demo">
-                        Ver Filtros
-                    </button>
+    
+            <!-- Footer -->
+            <footer id="footer" class="text-white text-center text-lg-start">
+                <div class="container p-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="mb-4">
+                                Sobre nós
+                            </h5>
+                            <p>
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Minus, molestias? Illum soluta maiores sit minus dolor quibusdam dolore voluptatum atque cupiditate magni? Aliquam id delectus dolor voluptatibus, fugit libero laudantium?
+                            </p>
+                
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mb-4">Desenvolvedores:</h5>
+                            <ul>
+                                <li>Felipe de Souza</li>
+                                <li>João de Negreiros</li>
+                                <li>Lucas Mota</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div id="produtos" class="col-md-9 d-block">
-
+                <div id="direitos" class="text-center p-3">
+                    © 2023 CV - Cavalo Livre. Todos os direitos reservados.
                 </div>
-                <div id="produtos-busca" class="col-md-9 d-none">
-
-                </div>
-            </div>
+            </footer>
         </div>
 
         <!-- Sidebar Filtros -->

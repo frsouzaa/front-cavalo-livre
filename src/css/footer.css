@@ -1,0 +1,10 @@
+#footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #23242a;
+}
+
+#direitos {
+    background-color: rgba(0, 0, 0, 0.2);
+}
