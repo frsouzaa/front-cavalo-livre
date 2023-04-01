@@ -1,8 +1,8 @@
-.active {
+.list-group-item.list-group-item-action.active {
     background-color: #198754 !important;
     border-color: #198754 !important;
 }
 
-.active:focus {
+.list-group-item.list-group-item-action.active:focus {
     background-color: #198754 !important;
 }

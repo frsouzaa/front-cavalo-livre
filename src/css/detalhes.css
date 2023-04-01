@@ -1,0 +1,45 @@
+.carousel-control-next-icon,.carousel-control-prev-icon{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2em;
+    
+}
+#detalhes-produto{
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: left;
+}
+
+.item-carrosel {
+    width: 60em;
+    height: 37.5em;
+    background-color: #3a3a3a !important;
+    display: flex;
+    justify-content: center;
+}
+
+.imagem {
+    max-height: 100%;
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+.carousel-indicators {
+    top: 38.5em;
+}
+
+.carousel-indicators button {
+    width: 0.8em !important;
+    height: 0.8em !important;
+    border: solid 0.2em !important;
+    border-radius: 1em;
+    border-color: #3a3a3a !important;
+}
+
+.carousel-indicators button.active {
+    border: none !important;
+    width: 1.2em !important;
+    height: 1.2em !important;
+    border-radius: 1.2em;
+    background-color: #3a3a3a !important;
+}
