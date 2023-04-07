@@ -1,0 +1,33 @@
+div.div-imagem-carrinho {
+    width: 18em;
+    height: 15em;
+    background-color: #3a3a3a;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+
+.quantidade-carrinho, .valor-carrinho {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.row-produto-carrinho {
+    margin-bottom: 2em;
+}
+
+.header-tab-carrinho {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;   
+}
+
+#tab-carrinho {
+    height: justify-content;
+    max-height: 50vh;
+}
+
+.nome-produto-carrinho {
+    padding: 1em 0 0 1em;
+}

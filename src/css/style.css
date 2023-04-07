@@ -22,3 +22,8 @@ body {
     flex-grow: 0;
     flex-basis: auto;
 }
+
+hr {
+    border-top: 0.1em solid;
+    opacity: .50;
+}

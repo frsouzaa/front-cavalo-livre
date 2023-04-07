@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="src/css/modal.css">
     <link rel="stylesheet" href="src/css/footer.css">
     <link rel="stylesheet" href="src/css/nav.css">
+    <link rel="stylesheet" href="src/css/carrinho.css">
     <!-- Tempus Dominus Styles -->
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.4.4/dist/css/tempus-dominus.min.css"
@@ -35,7 +36,7 @@
 
         <nav id="nav" class="navbar navbar-expand-lg bg-success fixed">
             <div class="container">
-                <a href="#" class="navbar-brand text-light logo">LOGO</a>
+                <a href="/../index.html" class="navbar-brand text-light logo">LOGO</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse"
                     aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,8 +45,8 @@
 
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <div id="menus" class="navbar-nav col-md-4">
-                        <a class="nav-link text-light" href="#">Início </a>
-                        <a class="nav-link text-light" href="#">Carrinho</a>
+                        <a class="nav-link text-light" href="/../index.html">Início </a>
+                        <a class="nav-link text-light" href="#" onclick="abrir_carrinho()">Carrinho</a>
                         <a class="nav-link text-light" href="#" data-bs-toggle="modal"
                             data-bs-target="#login">Perfil</a>
                     </div>
@@ -86,9 +87,47 @@
         <br>
         <br>
         <br>
-        <br>
 
-        <div id="main" class="container">
+        <div id="main" class="container">   
+            <!-- Carrinho -->
+            <div id="carrinho" class="d-none">
+                <h3>Seu carrinho</h3>
+                <br>
+                <div class="row">
+                    <div class="col-10 mx-auto">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span class="fs-4">Item</span>
+                            </div>
+                            <div class="header-tab-carrinho col-md-3">
+                                <span class="mx-auto fs-4">Quantidade</span>
+                            </div>
+                            <div class="header-tab-carrinho col-md-3">
+                                <span class="mx-auto fs-4">Valor</span>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div id="tab-carrinho" class="overflow-auto">
+                                
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-9">
+                            </div>
+                            <div class="header-tab-carrinho col-md-3">
+                                <span id="total" class="mx-auto fs-4">Total: R$ 10.078,55</span>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
             <!-- Detalhes Produto -->
             <div id="detalhes-produto" class="d-none">
                 <div class="row">
@@ -117,22 +156,21 @@
                                 <span class="carousel-control-next-icon"></span>
                             </button>
                         </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                     </div>
                     <div id="informacoes-produto" class="col-sm-12 col-md-4">
                         <h3 id="produto-nome"></h3>
                         <h4 id="produto-preco" class="fw-bold"></h4>
                         <p id="produto-descricao"></p>
-                        <button class="btn-filtros btn btn-success" type="button">Adicionar ao carrinho</button>
                     </div>
                 </div>
-                <br>
-                <br>
-                <br>
-                <br>
             </div>
 
             <!-- Produtos -->
-            <div id="grid-produtos" class="container">
+            <div id="grid-produtos" class="container d-none">
                 <div class="row">
                     <!-- <div class="col-md-1">
         
