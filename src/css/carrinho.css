@@ -9,8 +9,9 @@ div.div-imagem-carrinho {
 
 .quantidade-carrinho, .valor-carrinho {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     flex-direction: column;
+    padding-top: 1.8em !important;
 }
 
 .row-produto-carrinho {
@@ -30,4 +31,20 @@ div.div-imagem-carrinho {
 
 .nome-produto-carrinho {
     padding: 1em 0 0 1em;
+}
+
+.arrow-btn, .trash-btn {
+    border: none;
+}
+
+.arrow-btn:hover, .trash-btn:hover {
+    transform: scale(1.2);
+}
+
+.trash-btn {
+    margin-top: 1.5em;
+}
+
+.hr-row-carrinho {
+    margin-top: 3em;
 }

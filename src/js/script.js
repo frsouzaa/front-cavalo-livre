@@ -4,7 +4,7 @@ function carregar_conteudo() {
         get_view_detalhes(parametros);
         mostrar_div_principal("detalhes-produto");
     } else if(parametros.get("carrinho")) {
-        get_view_carrinho(parametros.get("carrinho"));
+        get_view_carrinho();
         mostrar_div_principal("carrinho")
     } else {
         get_view_grid_produtos();
