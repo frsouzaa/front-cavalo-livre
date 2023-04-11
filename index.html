@@ -39,7 +39,7 @@
 
         <nav id="nav" class="navbar navbar-expand-lg bg-success fixed">
             <div class="container">
-                <a href="../index.html" class="navbar-brand text-light logo">LOGO</a>
+                <a href="#" class="navbar-brand text-light logo" onclick="abrir_inicio()">LOGO</a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse"
                     aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +48,7 @@
 
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <div id="menus" class="navbar-nav col-md-4">
-                        <a class="nav-link text-light" href="../index.html">Início </a>
+                        <a class="nav-link text-light" href="#" onclick="abrir_inicio()">Início </a>
                         <a class="nav-link text-light" href="#" onclick="abrir_carrinho()">Carrinho</a>
                         <a class="nav-link text-light" href="#" data-bs-toggle="modal"
                             data-bs-target="#login">Perfil</a>
@@ -86,12 +86,11 @@
             </div>
         </nav>
 
-        <br>
-        <br>
-        <br>
-        <br>
-
         <div id="main" class="container">   
+            <br>
+            <br>
+            <br>
+            <br>
             <!-- Carrinho -->
             <div id="carrinho" class="d-none">
                 <h3>Seu carrinho</h3>
@@ -245,7 +244,7 @@
 
             </div>
             <br>
-            <button class="btn btn-success">Aplicar Filtros</button>
+            <button class="btn btn-success" onclick="busca()">Aplicar Filtros</button>
         </div>
     </div>
 

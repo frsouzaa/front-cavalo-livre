@@ -1,30 +1,43 @@
 function abrir_produto(elemento) {
     window.location.href = window.location.protocol + "//" +
-        window.location.host +
-        window.location.pathname +
-        "?produto=" + elemento.attributes.name.value;
+    window.location.host +
+    window.location.pathname +
+    "?produto=" + elemento.attributes.name.value;
 }
 
-function habilitar_filtro(element) {
-    element.classList.toggle("active");
+function habilitar_filtro(elemento) {
+    elemento.classList.toggle("active");
+    elemento.classList.toggle("filtro-ativo");
 }
 
-function busca(key, elemento) {
+function busca(key="Enter", elemento) {
     if (key !== "Enter") {
         return;
     }
 
-    const termo_buscado = elemento.value;
+    let termo_buscado = "";
+    if (!elemento) {
+        termo_buscado = localStorage.getItem("termo_busca") || "";
+    } else {
+        localStorage.setItem("termo_busca", elemento.value);
+        termo_buscado = elemento.value;
+    }
 
     const div_produtos_busca = document.getElementById("produtos-busca")
     const div_produtos = document.getElementById("produtos")
     div_produtos_busca.innerHTML = "";
-    if (!termo_buscado) {
+    if (!termo_buscado && elemento) {
         div_produtos_busca.classList.add("d-none");
         div_produtos_busca.classList.remove("d-block");
         div_produtos.classList.add("d-block");
         div_produtos.classList.remove("d-none");
         return;
+    }
+
+    const abc = document.getElementsByClassName("filtro-ativo");
+    let filtros_ativos = [];
+    for (let i = 0; i < abc.length; i++) {
+        filtros_ativos.push(abc[i].attributes.name.value);
     }
 
     const produtos = JSON.parse(localStorage.getItem('produtos'));
@@ -33,10 +46,12 @@ function busca(key, elemento) {
 
     produtos.forEach((produto) => {
         const nome_produto = produto.nome.toLowerCase();
-        if (nome_produto.includes(termo_buscado.toLocaleLowerCase())) {
+        const categorias = produto.categorias;
+        if ((nome_produto.includes(termo_buscado.toLocaleLowerCase()) && termo_buscado) ||
+        JSON.stringify(filtros_ativos.filter(item => categorias.includes(item))) !== JSON.stringify([])) {
             produtos_filtrados.push(produto);
         }
-    });
+    }); 
 
 
     div_produtos_busca.innerHTML = `
@@ -56,4 +71,10 @@ function busca(key, elemento) {
     div_produtos_busca.classList.remove("d-none");
     div_produtos.classList.add("d-none");
     div_produtos.classList.remove("d-block");
+}
+
+function abrir_inicio() {
+    window.location.href = window.location.protocol + "//" +
+    window.location.host +
+    window.location.pathname;
 }
