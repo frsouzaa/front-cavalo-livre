@@ -4,8 +4,13 @@ function carregar_conteudo() {
         get_view_detalhes(parametros);
         mostrar_div_principal("detalhes-produto");
     } else if(parametros.get("carrinho")) {
-        get_view_carrinho();
-        mostrar_div_principal("carrinho")
+        let quantidade_carrinho = JSON.parse(localStorage.getItem("quantidade_carrinho"));
+        if (JSON.stringify(quantidade_carrinho) === JSON.stringify({})) {
+            mostrar_div_principal("carrinho-vazio")
+        } else {
+            get_view_carrinho();
+            mostrar_div_principal("carrinho")
+        }
     } else {
         get_view_grid_produtos();
         mostrar_div_principal("grid-produtos")
@@ -89,7 +94,7 @@ function get_max_z_index() {
 }
 
 function mostrar_div_principal(div) {
-    const divs_principais = ["grid-produtos", "detalhes-produto", "carrinho"];
+    const divs_principais = ["grid-produtos", "detalhes-produto", "carrinho", "carrinho-vazio"];
     divs_principais.forEach(d => {
         const div_ = document.getElementById(d);
         div_.classList.remove("d-block");
@@ -133,7 +138,7 @@ const prod = [
         id: "jaqueta",
         nome: "Jaqueta de couro maneira",
         preco: 274.99,
-        categorias: ["vestuario", "ferramenta"],
+        categorias: ["Vastuário", "Ferramenta"],
         imagem: "https://img.freepik.com/fotos-gratis/jaqueta-de-couro-tan-classico_1101-731.jpg?q=10&h=200"
     }
 ]
