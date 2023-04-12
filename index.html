@@ -75,7 +75,7 @@
                             placeholder="Pesquisar" aria-label="Pesquisar" aria-describedby="basic-addon1"
                             onkeypress="busca(event.key, this)">
                         <div class="input-group-prepend">
-                            <button id="button-pesquisar" class="input-group-text bg-light">
+                            <button id="button-pesquisar" class="input-group-text bg-light" onclick="handle_lupa_buscar()">
                                 <span class="material-symbols-outlined text-dark">
                                     search
                                 </span>
@@ -186,10 +186,17 @@
         
                         </div> -->
                     <div class="col-sm-12 col-md-3">
-                        <button class="btn-filtros btn btn-success" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#filtros">
-                            Ver Filtros
-                        </button>
+                        <div class="mx-auto d-block d-md-none d-flex">
+                            <button class="btn-filtros btn btn-success mx-auto" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#filtros">
+                                Ver Filtros
+                            </button>
+                            <br>
+                        </div>
+                        <div id="lista-filtros" class="d-none d-md-block list-group">
+                            <h4>Filtrar por:</h4>
+                            
+                        </div>
                     </div>
                     <div id="produtos" class="col-sm-12 col-md-9 d-block">
 
@@ -236,15 +243,18 @@
     <!-- Sidebar Filtros -->
     <div class="offcanvas offcanvas-start" id="filtros">
         <div class="offcanvas-header">
-            <h1 class="offcanvas-title">Filtros</h1>
+            <h1 class="offcanvas-title">Filtrar por:</h1>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
         </div>
         <div class="offcanvas-body">
-            <div id="lista-filtros" class="list-group">
+            <div id="lista-filtros-mobile" class="list-group">
 
             </div>
             <br>
-            <button class="btn btn-success" onclick="busca()">Aplicar Filtros</button>
+            <div class="row">
+                <div class="col-3"></div>
+                <button class="btn btn-success col-6" onclick="busca()">Aplicar Filtros</button>
+            </div>
         </div>
     </div>
 

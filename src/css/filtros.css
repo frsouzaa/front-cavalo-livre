@@ -6,3 +6,9 @@
 .list-group-item.list-group-item-action.active:focus {
     background-color: #198754 !important;
 }
+
+#lista-filtros {
+    position: fixed;
+    width: 20em;
+}
+
