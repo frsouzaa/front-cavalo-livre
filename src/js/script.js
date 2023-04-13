@@ -140,6 +140,20 @@ const prod = [
         preco: 274.99,
         categorias: ["Vastuário", "Ferramenta"],
         imagem: "https://img.freepik.com/fotos-gratis/jaqueta-de-couro-tan-classico_1101-731.jpg?q=10&h=200"
+    },
+    {
+        id: "burro",
+        nome: "Burrinho",
+        preco: 3487.08,
+        categorias: ["Animal"],
+        imagem: "https://wp.pt.aleteia.org/wp-content/uploads/sites/5/2017/07/untitled-design10.jpg?w=620&h=348&crop=1"
+    },
+    {
+        id: "sementes",
+        nome: "2Kg de sementes diversas",
+        preco: 20.045,
+        categorias: ["Platação"],
+        imagem: "https://www.infoescola.com/wp-content/uploads/2010/10/sementes-110365694.jpg"
     }
 ]
 
@@ -201,6 +215,29 @@ const detalhe = {
         categorias: [],
         imagens: [
             "https://img.freepik.com/fotos-gratis/jaqueta-de-couro-tan-classico_1101-731.jpg?q=10&h=200",
+        ]
+    },
+    "burro": {
+        id: "burro",
+        nome: "Burrinho",
+        preco: 3487.08,
+        descricao: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam iure cum debitis dolorum, distinctio inventore nostrum optio? Temporibus cumque accusantium eos sequi harum fugit ipsa, rem magni repudiandae dolore a.",
+        categorias: [],
+        imagens: [
+            "https://wp.pt.aleteia.org/wp-content/uploads/sites/5/2017/07/untitled-design10.jpg?w=620&h=348&crop=1",
+            "https://st2.depositphotos.com/10055026/49531/i/450/depositphotos_495316206-stock-photo-donkey-eating-grass-animal-concept.jpg"
+        ]
+    },
+    "sementes": {
+        id: "sementes",
+        nome: "2Kg de sementes diversas",
+        preco: 20.45,
+        descricao: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam iure cum debitis dolorum, distinctio inventore nostrum optio? Temporibus cumque accusantium eos sequi harum fugit ipsa, rem magni repudiandae dolore a.",
+        categorias: [],
+        imagens: [
+            "https://www.infoescola.com/wp-content/uploads/2010/10/sementes-110365694.jpg",
+            "https://blog.agromove.com.br/wp-content/uploads/2019/03/20190318-imagem-para-tratamento-de-sementes-Blog-image.jpeg",
+            "https://blog.syngentadigital.ag/wp-content/uploads/2021/04/16-04_producao_de_sementes_01.jpg"
         ]
     }
 }

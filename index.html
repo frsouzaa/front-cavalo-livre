@@ -53,9 +53,8 @@
                         <a class="nav-link text-light" href="#" data-bs-toggle="modal"
                             data-bs-target="#login">Perfil</a>
                     </div>
-
                     <div class="col-sm-12 col-md-3">
-                        <marquee class="text-light align-middle">
+                        <marquee class="text-light align-middle d-none d-md-block">
                             <b>
                                 <span class="material-symbols-outlined align-middle">
                                     nature
@@ -69,11 +68,11 @@
                     </div>
                     <div class="col-md-1">
                     </div>
-
+                    <br>
                     <div class="input-group">
                         <input id="input-pesquisar" type="text" class="form-control bg-light text-dark"
                             placeholder="Pesquisar" aria-label="Pesquisar" aria-describedby="basic-addon1"
-                            onkeypress="busca(event.key, this)">
+                            onkeypress="busca(event.key)">
                         <div class="input-group-prepend">
                             <button id="button-pesquisar" class="input-group-text bg-light" onclick="handle_lupa_buscar()">
                                 <span class="material-symbols-outlined text-dark">
@@ -82,6 +81,7 @@
                             </button>
                         </div>
                     </div>
+                    <br>
                 </div>
             </div>
         </nav>
@@ -101,7 +101,9 @@
                         <p>Assim que adiconar algo ao seu carrinho ele aparecerá aqui.</p>
                     </div>
                     <div class="mx-auto">
-                        <button class="btn btn-success" href="#" onclick="abrir_inicio()">Começar as Compras</button>
+                        <button class="btn btn-success" href="#" onclick="abrir_inicio()">
+                            Começar as Compras
+                        </button>
                     </div>
                 </div>
             </div>
@@ -132,7 +134,7 @@
                             <div class="col-md-9">
                             </div>
                             <div class="header-tab-carrinho col-md-3">
-                                <span id="total" class="mx-auto fs-4">Total: R$ 10.078,55</span>
+                                <span id="total" class="mx-auto fs-4"></span>
                             </div>
                         </div>
                         <br>
@@ -157,7 +159,7 @@
 
                     <div class="col-sm-12 col-md-8">
                         <!-- Carousel -->
-                        <div id="carrosel" class="carousel">
+                        <div id="carrosel" class="carousel slide">
 
                             <!-- Indicators/dots -->
                             <div id="indicadores" class="carousel-indicators">
@@ -199,16 +201,17 @@
         
                         </div> -->
                     <div class="col-sm-12 col-md-3">
-                        <div class="mx-auto d-block d-md-none d-flex">
-                            <button class="btn-filtros btn btn-success mx-auto" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#filtros">
-                                Ver Filtros
-                            </button>
+                        <div class="mx-auto d-block d-md-none">
+                            <div class="d-flex">
+                                <button class="btn-filtros btn btn-success mx-auto" type="button" data-bs-toggle="offcanvas"
+                                    data-bs-target="#filtros">
+                                    Ver Filtros
+                                </button>
+                            </div>
                             <br>
                         </div>
                         <div id="lista-filtros" class="d-none d-md-block list-group">
                             <h4>Filtrar por:</h4>
-                            
                         </div>
                     </div>
                     <div id="produtos" class="col-sm-12 col-md-9 d-block">
@@ -266,7 +269,7 @@
             <br>
             <div class="row">
                 <div class="col-3"></div>
-                <button class="btn btn-success col-6" onclick="busca()">Aplicar Filtros</button>
+                <button class="btn btn-success col-6" onclick="busca()" data-bs-dismiss="offcanvas">Aplicar Filtros</button>
             </div>
         </div>
     </div>

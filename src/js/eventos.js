@@ -16,7 +16,7 @@ function handle_lupa_buscar() {
     busca()
 }
 
-function busca(key="Enter", elemento) {
+function busca(key="Enter") {
     if (key !== "Enter") {
         return;
     }
@@ -62,12 +62,17 @@ function busca(key="Enter", elemento) {
     if (termo_buscado) {
         div_produtos_busca.innerHTML = `
         <div class="row">
-        <h4 id="titulo-busca">
-        <span id="icone-busca" class="material-symbols-outlined text-dark align-middle">
-        search
-        </span>
-        Buscando por: ${termo_buscado} (${produtos_filtrados.length})
-        </h4>
+            <h4 id="titulo-busca" class="text-dark">
+                <span id="icone-busca" class="material-symbols-outlined align-middle">
+                    search
+                </span>
+                Buscando por: ${termo_buscado} (${produtos_filtrados.length})
+                <a class="fechar-busca" onclick="fechar_busca()">
+                    <span class="material-symbols-outlined align-middle">
+                        close
+                    </span>
+                </a>
+            </h4>
         </div>
         `;
     }
@@ -79,6 +84,18 @@ function busca(key="Enter", elemento) {
     div_produtos_busca.classList.remove("d-none");
     div_produtos.classList.add("d-none");
     div_produtos.classList.remove("d-block");
+
+    const nav = document.getElementById("navbar-collapse");
+    const nav_collapse = document.getElementById("navbar-collapse")
+    if (nav_collapse.className.split(" ").find(e => e === "show")) {
+        const collapse = new bootstrap.Collapse(nav);
+        collapse.toggle();
+    }
+}
+
+function fechar_busca() {
+    document.getElementById("input-pesquisar").value = "";
+    busca();
 }
 
 function abrir_inicio() {

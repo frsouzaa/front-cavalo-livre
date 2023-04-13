@@ -15,7 +15,16 @@ function render_detalhes(produto) {
     titulo.innerHTML = produto.nome;
     preco.innerHTML = produto.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     descricao.innerHTML = produto.descricao;
-    informacoes_produto.innerHTML += `<button class="btn-filtros btn btn-success" type="button" name="${produto.id}" onclick="adiciona_produto_carrinho(this)">Adicionar ao carrinho</button><br><br><br><br>`;
+    informacoes_produto.innerHTML += `
+    <button class="btn-filtros btn btn-success" type="button" name="${produto.id}" onclick="adiciona_produto_carrinho(this)">
+        Adicionar ao carrinho
+    </button>
+    <br>
+    <span class="produto-adicionado d-none">
+        Produto adicionado ao seu carrinho
+    </span>
+    <br><br><br><br>
+    `;
 
     let conteudo_imagens = ``;
     produto.imagens.forEach((link) => {

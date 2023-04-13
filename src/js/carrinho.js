@@ -38,13 +38,14 @@ function render_linha_carrinho(produto) {
             <div class="mx-auto">
                 <button class="btn arrow-btn ${produto.quantidade === 1 ? "invisible" : ""}" name="carrinho${produto.id}" onclick="diminue_quantidade(this)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#198754" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
                     </svg>
                 </button>
                 <span class="mx-auto fs-5">${produto.quantidade}x</span>
                 <button class="btn arrow-btn" name="carrinho${produto.id}" onclick="aumenta_quantidade(this)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#198754" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                     </svg>
                 </button>
             </div>
@@ -70,24 +71,24 @@ function abrir_carrinho() {
 }
 
 function adiciona_produto_carrinho(elemento) {
-    let carrinho = JSON.parse(localStorage.getItem("carrinho"));
+    const produto_adicionado = document.getElementsByClassName("produto-adicionado")[0];
+    produto_adicionado.classList.toggle("d-none")
+    setTimeout(() => {
+        produto_adicionado.classList.toggle("d-none")
+    }, 2000);
+    let quantidade_carrinho = JSON.parse(localStorage.getItem("quantidade_carrinho"));
     const id_produto = elemento.attributes.name.value;
-    if (!carrinho) {
-        localStorage.setItem("carrinho", JSON.stringify([id_produto]));
+    if (!quantidade_carrinho) {
         localStorage.setItem("quantidade_carrinho", `{"${id_produto}": 1}`);
         return;
     }
-    if (carrinho.find(e => e === id_produto)) {
-        let quanidade_carrinho = JSON.parse(localStorage.getItem("quantidade_carrinho"));
-        quanidade_carrinho[id_produto] += 1;
-        localStorage.setItem("quantidade_carrinho", JSON.stringify(quanidade_carrinho));
+    if (Object.keys(quantidade_carrinho).find(e => e === id_produto)) {
+        quantidade_carrinho[id_produto] += 1;
+        localStorage.setItem("quantidade_carrinho", JSON.stringify(quantidade_carrinho));
         return;
     }
-    carrinho.push(id_produto)
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-    let quanidade_carrinho = JSON.parse(localStorage.getItem("quantidade_carrinho"));
-    quanidade_carrinho[id_produto] = 1;
-    localStorage.setItem("quantidade_carrinho", JSON.stringify(quanidade_carrinho));
+    quantidade_carrinho[id_produto] = 1;
+    localStorage.setItem("quantidade_carrinho", JSON.stringify(quantidade_carrinho));
 }
 
 function diminue_quantidade(elemento) {
@@ -139,5 +140,9 @@ function remove_produto_carrinho(elemento) {
         const hrs = document.getElementsByClassName("hr-row-carrinho");
         const ultima_hr = hrs[hrs.length - 1];
         ultima_hr.parentNode.removeChild(ultima_hr);
+    }
+    atualiza_total();
+    if (JSON.stringify(quantidade_carrinho) === JSON.stringify({})) {
+        mostrar_div_principal("carrinho-vazio");
     }
 }
