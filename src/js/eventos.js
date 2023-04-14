@@ -77,8 +77,7 @@ function busca(key="Enter") {
         `;
     }
 
-    const colunas = 3;
-    render_grid("produtos-busca", produtos_filtrados, colunas)
+    render_grid("produtos-busca", produtos_filtrados)
 
     div_produtos_busca.classList.add("d-block");
     div_produtos_busca.classList.remove("d-none");

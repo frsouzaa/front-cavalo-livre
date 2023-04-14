@@ -12,16 +12,25 @@ function carregar_conteudo() {
             mostrar_div_principal("carrinho")
         }
     } else {
+        const pesquisa = document.getElementById("pesquisa");
+        pesquisa.classList.remove("d-none");
         get_view_grid_produtos();
         mostrar_div_principal("grid-produtos")
     }
     
+    const max_z_index = get_max_z_index()
+
     const nav = document.getElementById("nav");
-    nav.style = `z-index: ${get_max_z_index()}`;
+    nav.style = `z-index: ${max_z_index+1}`;
 
     const filtros = document.getElementsByClassName("offcanvas")[0];
-    filtros.style = `z-index: ${get_max_z_index()}`;
-    
+    filtros.style = `z-index: ${max_z_index+2}`;
+
+    const cadastro = document.getElementById("cadastro");
+    cadastro.style = `z-index: ${max_z_index+3}`;
+
+    const login = document.getElementById("login");
+    login.style = `z-index: ${max_z_index+4}`;
 }
 
 function get_produtos(lista_produtos) {

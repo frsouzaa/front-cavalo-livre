@@ -69,7 +69,7 @@
                     <div class="col-md-1">
                     </div>
                     <br>
-                    <div class="input-group">
+                    <div id="pesquisa" class="input-group d-none">
                         <input id="input-pesquisar" type="text" class="form-control bg-light text-dark"
                             placeholder="Pesquisar" aria-label="Pesquisar" aria-describedby="basic-addon1"
                             onkeypress="busca(event.key)">
@@ -93,6 +93,8 @@
             <br>
             <!-- Carrinho -->
             <div id="carrinho-vazio" class="d-none">
+                <br>
+                <br>
                 <div class="d-flex flex-column">
                     <div class="mx-auto">
                         <h2>Seu carrinho está vazio</h2>
@@ -108,11 +110,22 @@
                 </div>
             </div>
             <div id="carrinho" class="d-none">
-                <h3>Seu carrinho</h3>
+                <div class="row d-flex flex-column justify-content-center">
+                    <div class="w-auto mx-auto">
+                        <h3>
+                            <span class="align-middle">
+                                Seu carrinho
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+                                <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                            </svg>
+                        </h3>
+                    </div>
+                </div>
                 <br>
                 <div class="row">
                     <div class="col-10 mx-auto">
-                        <div class="row">
+                        <div class="row d-none d-md-flex">
                             <div class="col-md-6">
                                 <span class="fs-4">Item</span>
                             </div>
@@ -131,22 +144,15 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-md-9">
-                            </div>
-                            <div class="header-tab-carrinho col-md-3">
-                                <span id="total" class="mx-auto fs-4"></span>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-md-9">
-                            </div>
-                            <div class="col-md-3 d-flex">
-                                <button class="mx-auto btn btn-success">Finalizar Compra</button>
+                            <div class="w-100 d-md-flex flex-md-row align-items-md-center justify-content-md-end">
+                                <div class="d-flex d-md-inline-block align-middle">
+                                    <span id="total" class="mx-auto fs-4"></span>
+                                </div>
+                                <div class="d-flex d-md-inline-block align-middle px-4">
+                                    <button class="mx-auto btn btn-success fs-5">Finalizar Compra</button>
+                                </div>
                             </div>
                         </div>
-                        <br>
-                        <br>
                         <br>
                         <br>
                     </div>
@@ -156,6 +162,19 @@
             <!-- Detalhes Produto -->
             <div id="detalhes-produto" class="d-none">
                 <div class="row">
+                    <a href="#" class="link-dark fs-4 text-decoration-none d-flex align-content-center" onclick="abrir_inicio()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                        </svg>
+                        <p class="d-inline-block">
+                            <span class="position-relative" style="left: -0.2em; top: 0.05em">
+                                Voltar para a vitrine
+                            </span>
+                        </p>
+                    </a>
+                    <br>
+                    <br>
+                    
 
                     <div class="col-sm-12 col-md-8">
                         <!-- Carousel -->
@@ -197,27 +216,29 @@
             <!-- Produtos -->
             <div id="grid-produtos" class="container d-none">
                 <div class="row">
+                    <div class="mx-auto d-block d-lg-none">
+                        <div class="d-flex">
+                            <button class="btn-filtros btn btn-success mx-auto" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#filtros">
+                                Ver Filtros
+                            </button>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
                     <!-- <div class="col-md-1">
         
                         </div> -->
-                    <div class="col-sm-12 col-md-3">
-                        <div class="mx-auto d-block d-md-none">
-                            <div class="d-flex">
-                                <button class="btn-filtros btn btn-success mx-auto" type="button" data-bs-toggle="offcanvas"
-                                    data-bs-target="#filtros">
-                                    Ver Filtros
-                                </button>
-                            </div>
-                            <br>
-                        </div>
-                        <div id="lista-filtros" class="d-none d-md-block list-group">
+                    <div class="col-3 d-none d-lg-block">
+                        <div id="lista-filtros" class="d-block list-group">
                             <h4>Filtrar por:</h4>
                         </div>
                     </div>
-                    <div id="produtos" class="col-sm-12 col-md-9 d-block">
+                    <div id="produtos" class="col-12 col-lg-9 d-block">
 
                     </div>
-                    <div id="produtos-busca" class="col-sm-12 col-md-9 d-none">
+                    <div id="produtos-busca" class="col-12 col-lg-9 d-none">
 
                     </div>
                 </div>

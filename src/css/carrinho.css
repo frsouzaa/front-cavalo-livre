@@ -7,13 +7,6 @@ div.div-imagem-carrinho {
     margin: 0;
 }
 
-.quantidade-carrinho, .valor-carrinho {
-    display: flex;
-    /* justify-content: center; */
-    flex-direction: column;
-    padding-top: 1.8em !important;
-}
-
 .row-produto-carrinho {
     margin-bottom: 2em;
 }
@@ -26,11 +19,7 @@ div.div-imagem-carrinho {
 
 #tab-carrinho {
     height: justify-content;
-    max-height: 50vh;
-}
-
-.nome-produto-carrinho {
-    padding: 1em 0 0 1em;
+    max-height: 60vh;
 }
 
 .arrow-btn, .trash-btn {
@@ -39,12 +28,4 @@ div.div-imagem-carrinho {
 
 .arrow-btn:hover, .trash-btn:hover {
     transform: scale(1.2);
-}
-
-.trash-btn {
-    margin-top: 1.5em;
-}
-
-.hr-row-carrinho {
-    margin-top: 3em;
 }

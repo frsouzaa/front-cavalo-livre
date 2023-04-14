@@ -17,22 +17,16 @@ function get_view_grid_produtos() {
 }
 
 function render_grid_produtos() {
-    const colunas = 3;
-    render_grid("produtos", JSON.parse(localStorage.getItem('produtos')), colunas)
+    render_grid("produtos", JSON.parse(localStorage.getItem('produtos')))
 }
 
-function render_grid(id_grid, produtos, quant_colunas) {
+function render_grid(id_grid, produtos) {
     const conteudo = document.getElementById(id_grid);
-    const quant_produtos = produtos.length;
-    const colunas = quant_colunas;
-    const linhas = Math.ceil(quant_produtos / colunas);
-    for (let i = 0; i < linhas; i++) {
-        conteudo.innerHTML += `
+    conteudo.innerHTML += `
         <div class="row">
-            ${render_cards(produtos.slice(colunas * i, (colunas * i) + colunas))}
+            ${render_cards(produtos)}
         </div>
-        `;
-    }
+    `;
 }
 
 function render_cards(produtos) {
