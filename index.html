@@ -31,6 +31,7 @@
     <script type="" src="src/js/detalhes.js"></script>
     <script type="" src="src/js/grid_produtos.js"></script>
     <script type="" src="src/js/eventos.js"></script>
+    <script type="" src="src/js/validacoes.js"></script>
     <script type="" src="src/js/script.js"></script>
 </head>
 
@@ -312,12 +313,16 @@
                     </div>
                 </div>
                 <div class="modal-body">
+                    <div class="row d-flex justify-content-center">
+                        <span id="login-invalido" class="w-auto span-erro">E-mail ou senha incorretos.</span>
+                    </div>
                     <div class="row">
                         <div class="form-group">
                             <label for="email-login"></label>
                             <input type="text" class="form-control campo-modal" id="email-login"
                                 aria-describedby="emailHelp" placeholder="Endereço de e-mail">
-                        </div>
+                            <span id="email-login-invalido" class="w-auto span-erro">E-mail inválido.</span>
+                    </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -337,7 +342,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <button type="button" class="btn btn-success col-md-10 btn-lg">Entrar</button>
+                        <button type="button" class="btn btn-success col-md-10 btn-lg" onclick="valida_form_login()">Entrar</button>
                         <div class="col-md-1"></div>
                     </div>
                     <div class="row">
@@ -373,6 +378,7 @@
                         <div class="form-group">
                             <label for="nome-cadastro"></label>
                             <input type="text" class="form-control campo-modal" id="nome-cadastro" placeholder="Nome">
+                            <span id="nome-cadastro-invalido" class="w-auto span-erro">Nome inválido.</span>
                         </div>
                     </div>
                     <div class="row">
@@ -381,15 +387,17 @@
                                 <label for="sobrenome-cadastro"></label>
                                 <input type="text" class="form-control campo-modal" id="sobrenome-cadastro"
                                     placeholder="Sobrenome">
-                            </div>
+                                <span id="sobrenome-cadastro-invalido" class="w-auto span-erro">Sobrenome inválido.</span>
+                        </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="cpf-cadastro"></label>
-                                <input type="text" class="form-control campo-modal" id="cpf-cadastro" placeholder="CPF">
-                            </div>
+                                <input type="text" class="form-control campo-modal" id="cpf-cadastro" placeholder="CPF" onkeypress="return permite_apenas_numeros(event)">
+                                <span id="cpf-cadastro-invalido" class="w-auto span-erro">CPF inválido.</span>
+                        </div>
                         </div>
                     </div>
                     <div class="row">
@@ -398,7 +406,8 @@
                                 <label for="email-cadastro"></label>
                                 <input type="text" class="form-control campo-modal" id="email-cadastro"
                                     aria-describedby="emailHelp" placeholder="Endereço de e-mail">
-                            </div>
+                                <span id="email-cadastro-invalido" class="w-auto span-erro">E-mail inválido.</span>
+                        </div>
                         </div>
                     </div>
                     <div class="row">
@@ -407,7 +416,8 @@
                                 <label for="senha-cadastro"></label>
                                 <input type="password" class="form-control campo-modal" id="senha-cadastro"
                                     placeholder="Senha">
-                            </div>
+                                <span id="senha-cadastro-invalido" class="w-auto span-erro">Senha inválida.</span>
+                        </div>
                         </div>
                     </div>
                     <div class="row">
@@ -416,7 +426,8 @@
                                 <label for="confirmar-senha-cadastro"></label>
                                 <input type="password" class="form-control campo-modal" id="confirmar-senha-cadastro"
                                     placeholder="Confirmar senha">
-                            </div>
+                                <span id="confirmar-senha-cadastro-invalido" class="w-auto span-erro">As duas senhas são diferentes.</span>
+                        </div>
                         </div>
                     </div>
                     <div class="row">
@@ -424,7 +435,8 @@
                             <div class="form-group">
                                 <label for="data-cadastro"></label>
                                 <input type="text" id="datetimepicker1" class="form-control campo-modal datepicker"
-                                    placeholder="Data de nascimento" />
+                                    placeholder="Data de nascimento" onkeypress="return permite_apenas_numeros(event)"/>
+                                <span id="nascimento-cadastro-invalido" class="w-auto span-erro">Data de nascimento inválida.</span>
                             </div>
                         </div>
                     </div>
@@ -454,7 +466,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-12">
-                            <input class="form-check-input" type="radio" name="options-outlined" id="nao-informar">
+                            <input checked="checked" class="form-check-input" type="radio" name="options-outlined" id="nao-informar">
                             <label class="form-check-label" for="nao-informar">Prefiro não informar</label>
                         </div>
                     </div>
@@ -462,7 +474,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <button type="button" class="btn btn-success col-md-10 btn-lg">Fazer Cadastro</button>
+                        <button type="button" class="btn btn-success col-md-10 btn-lg" onclick="valida_form_cadastro()">Fazer Cadastro</button>
                         <div class="col-md-1"></div>
                     </div>
                     <div class="row">
@@ -510,12 +522,13 @@
                             <label for="email-login"></label>
                             <input type="text" class="form-control campo-modal" id="email-esqueci-senha"
                                 aria-describedby="emailHelp" placeholder="Endereço de e-mail">
+                            <span id="email-esqueci-invalido" class="w-auto span-erro">E-mail inválido.</span>
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <button type="button" class="btn btn-success col-md-10 btn-lg">Enviar</button>
+                        <button type="button" class="btn btn-success col-md-10 btn-lg" onclick="valida_form_esqueci()">Enviar</button>
                         <div class="col-md-1"></div>
                     </div>
                     <div class="row">

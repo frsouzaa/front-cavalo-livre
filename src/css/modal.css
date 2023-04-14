@@ -29,3 +29,18 @@
     background-color: #198754;
     border-color: #198754;
 }
+
+.span-erro {
+    display: none;
+    padding: 0 12px;
+    color: #e20000;
+}
+
+.input-erro{
+    border-color: #e20000;
+
+}
+
+.input-erro:focus{
+    border-color: #ff0000 !important;
+}

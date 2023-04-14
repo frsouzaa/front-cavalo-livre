@@ -4,16 +4,6 @@ function get_view_grid_produtos() {
     localStorage.setItem("produtos", JSON.stringify(produtos));
     render_grid_produtos();
     render_lista_filtros();
-    montar_paises()
-
-    new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'),
-    {
-        allowInputToggle: false,
-        localization: {
-            format: 'dd/MM/yyyy',
-            locale: "pt-br"
-        },
-    })
 }
 
 function render_grid_produtos() {

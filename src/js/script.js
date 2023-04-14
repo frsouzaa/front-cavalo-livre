@@ -17,6 +17,19 @@ function carregar_conteudo() {
         get_view_grid_produtos();
         mostrar_div_principal("grid-produtos")
     }
+
+    montar_paises()
+    new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'),
+    {
+        allowInputToggle: false,
+        localization: {
+            format: 'dd/MM/yyyy',
+            locale: "pt-br"
+        },
+        restrictions: {
+            maxDate: new Date()
+        }
+    })
     
     const max_z_index = get_max_z_index()
 
