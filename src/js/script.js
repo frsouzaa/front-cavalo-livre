@@ -48,6 +48,10 @@ function carregar_conteudo() {
 
     const login = document.getElementById("login");
     login.style = `z-index: ${max_z_index+4}`;
+
+    login.addEventListener("hide.bs.modal", () => {
+        limpar_formularios();
+    })
 }
 
 function handle_valida_usuario() {
@@ -191,6 +195,40 @@ function mostrar_div_principal(div) {
     const div_ = document.getElementById(div);
     div_.classList.add("d-block");
     div_.classList.remove("d-none");
+}
+
+function limpar_formularios() {
+    const inputs = [
+        document.getElementById("nome-cadastro"),
+        document.getElementById("sobrenome-cadastro"),
+        document.getElementById("cpf-cadastro"),
+        document.getElementById("email-cadastro"),
+        document.getElementById("senha-cadastro"),
+        document.getElementById("confirmar-senha-cadastro"),
+        document.getElementById("datetimepicker1"),
+        document.getElementById("email-login"),
+        document.getElementById("senha-login"),
+        document.getElementById("email-esqueci-senha"),
+    ]
+
+    const spans = [
+        document.getElementById("email-esqueci-invalido"),
+        document.getElementById("email-login-invalido"),
+        document.getElementById("login-invalido"),
+        document.getElementById("nome-cadastro-invalido"),
+        document.getElementById("sobrenome-cadastro-invalido"),
+        document.getElementById("cpf-cadastro-invalido"),
+        document.getElementById("email-cadastro-invalido"),
+        document.getElementById("senha-cadastro-invalido"),
+        document.getElementById("confirmar-senha-cadastro-invalido"),
+        document.getElementById("nascimento-cadastro-invalido"), 
+    ]
+
+    for (let i = 0; i < inputs.length; i++) {
+        spans[i].classList.remove("d-block");
+        inputs[i].classList.remove("input-erro");
+        inputs[i].value = "";
+    }
 }
 
 const prod = [

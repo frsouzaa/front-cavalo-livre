@@ -52,9 +52,12 @@
                         <span id="label-perfil" class="nav-link text-light d-none d-block d-lg-none"></span>
                         <a class="nav-link text-light" href="#" onclick="abrir_inicio()">Vitrine </a>
                         <a class="nav-link text-light d-none" href="#" onclick="abrir_carrinho()" id="nav-carrinho">Carrinho</a>
-                        <span data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
-                            <a class="nav-link text-light d-none" href="#" data-bs-toggle="modal" data-bs-target="#login" id="perfil">Fazer login</a>
-                        </span>
+                        <div id="perfil">
+                            <span class="d-none d-sm-block" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
+                                <a class="nav-link text-light d-none" href="#" data-bs-toggle="modal" data-bs-target="#login">Fazer login</a>
+                            </span>
+                            <a class="nav-link text-light d-none d-none d-lg-block" href="#" data-bs-toggle="modal" data-bs-target="#login">Fazer login</a>
+                        </div>
                         
                         <div id="perfil-login" class="d-none">
                             <div class="btn-group dropdown d-none d-lg-block">
