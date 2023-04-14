@@ -44,3 +44,7 @@
 .input-erro:focus{
     border-color: #ff0000 !important;
 }
+
+#modal-sessao-expirada {
+    top: 5em;
+}

@@ -49,13 +49,29 @@
 
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <div id="menus" class="navbar-nav col-md-4">
-                        <a class="nav-link text-light" href="#" onclick="abrir_inicio()">Início </a>
-                        <a class="nav-link text-light" href="#" onclick="abrir_carrinho()">Carrinho</a>
-                        <a class="nav-link text-light" href="#" data-bs-toggle="modal"
-                            data-bs-target="#login">Perfil</a>
+                        <span id="label-perfil" class="nav-link text-light d-none d-block d-lg-none"></span>
+                        <a class="nav-link text-light" href="#" onclick="abrir_inicio()">Vitrine </a>
+                        <a class="nav-link text-light d-none" href="#" onclick="abrir_carrinho()" id="nav-carrinho">Carrinho</a>
+                        <span data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
+                            <a class="nav-link text-light d-none" href="#" data-bs-toggle="modal" data-bs-target="#login" id="perfil">Fazer login</a>
+                        </span>
+                        
+                        <div id="perfil-login" class="d-none">
+                            <div class="btn-group dropdown d-none d-lg-block">
+                                <button id="btn-perfil" type="button" class="nav-link text-light btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="nav-link text-dark" href="#" onclick="abrir_carrinho()">Seu carrinho</a></li>
+                                    <li><a class="nav-link text-dark" href="#" onclick="sair()">Sair</a></li>
+                                </ul>
+                            </div>
+                            <a class="nav-link text-light d-block d-lg-none" href="#" onclick="abrir_carrinho()">Seu Carrinho</a>
+                            <a class="nav-link text-light d-block d-lg-none" href="#" onclick="sair()">Sair</a>
+                        </div>    
                     </div>
                     <div class="col-sm-12 col-md-3">
-                        <marquee class="text-light align-middle d-none d-md-block">
+                        <marquee class="text-light align-middle d-none d-block">
                             <b>
                                 <span class="material-symbols-outlined align-middle">
                                     nature
@@ -69,20 +85,18 @@
                     </div>
                     <div class="col-md-1">
                     </div>
-                    <br>
                     <div id="pesquisa" class="input-group d-none">
                         <input id="input-pesquisar" type="text" class="form-control bg-light text-dark"
                             placeholder="Pesquisar" aria-label="Pesquisar" aria-describedby="basic-addon1"
                             onkeypress="busca(event.key)">
                         <div class="input-group-prepend">
-                            <button id="button-pesquisar" class="input-group-text bg-light" onclick="handle_lupa_buscar()">
+                            <button id="button-pesquisar" class="input-group-text bg-light" onclick="busca()">
                                 <span class="material-symbols-outlined text-dark">
                                     search
                                 </span>
                             </button>
                         </div>
                     </div>
-                    <br>
                 </div>
             </div>
         </nav>
@@ -215,7 +229,7 @@
             </div>
 
             <!-- Produtos -->
-            <div id="grid-produtos" class="container d-none">
+            <div id="grid-produtos" class="d-none">
                 <div class="row">
                     <div class="mx-auto d-block d-lg-none">
                         <div class="d-flex">
@@ -233,7 +247,9 @@
                         </div> -->
                     <div class="col-3 d-none d-lg-block">
                         <div id="lista-filtros" class="d-block list-group">
-                            <h4>Filtrar por:</h4>
+                            <div class="row">
+                                <span class="h4 w-auto mx-auto">Filtrar por:</span>
+                            </div>
                         </div>
                     </div>
                     <div id="produtos" class="col-12 col-lg-9 d-block">
@@ -291,7 +307,17 @@
             <br>
             <div class="row">
                 <div class="col-3"></div>
-                <button class="btn btn-success col-6" onclick="busca()" data-bs-dismiss="offcanvas">Aplicar Filtros</button>
+                <button class="btn btn-success col-6" onclick="busca()" data-bs-dismiss="offcanvas">
+                    Aplicar Filtros
+                </button>
+                <div class="col-3"></div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-3"></div>
+                <button class="btn btn-dark col-6" onclick="remover_filtros()" data-bs-dismiss="offcanvas">
+                    Remover Filtros
+                </button> 
             </div>
         </div>
     </div>
@@ -308,7 +334,7 @@
                         <h2 class="modal-title text-center logo">LOGO</h2>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" class="close btn-close text-reset" data-bs-dismiss="modal"
+                        <button id="fechar-login" type="button" class="close btn-close text-reset" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                 </div>
@@ -541,6 +567,31 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="modal-sessao-expirada" tabindex="-1" aria-labelledby="modal-sessao-expirada-Label" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <div class="col-md-1">
+
+                </div>
+                <div class="col-md-10">
+                    <h2 class="modal-title text-center">Sua sessão expirou</h2>
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="close btn-close text-reset" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+              <!-- <h5 class="modal-title" id="modal-sessao-expirada-Label">Modal title</h5> -->
+            </div>
+            <div class="modal-body">
+                <div class="row d-flex">
+                    <span class="h5 w-auto mx-auto">Faça <a class="link-success text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#login">login</a> novamente</span>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <!-- Bootatrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"

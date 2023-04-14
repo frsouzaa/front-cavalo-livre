@@ -1,8 +1,8 @@
 function get_view_carrinho() {
-    let quantidade_carrinho = JSON.parse(localStorage.getItem("quantidade_carrinho"));
-    produtos = get_produtos(Object.keys(quantidade_carrinho));
+    let carrinho = JSON.parse(localStorage.getItem("carrinho"));
+    produtos = get_produtos(Object.keys(carrinho));
     for (let i = 0; i < produtos.length; i++) {
-        produtos[i].quantidade = quantidade_carrinho[produtos[i].id]
+        produtos[i].quantidade = carrinho[produtos[i].id]
     }
     render_carrinho(produtos);
 }
@@ -76,54 +76,54 @@ function adiciona_produto_carrinho(elemento) {
     setTimeout(() => {
         produto_adicionado.classList.toggle("d-none")
     }, 2000);
-    let quantidade_carrinho = JSON.parse(localStorage.getItem("quantidade_carrinho"));
+    let carrinho = JSON.parse(localStorage.getItem("carrinho"));
     const id_produto = elemento.attributes.name.value;
-    if (!quantidade_carrinho) {
-        localStorage.setItem("quantidade_carrinho", `{"${id_produto}": 1}`);
+    if (!carrinho) {
+        localStorage.setItem("carrinho", `{"${id_produto}": 1}`);
         return;
     }
-    if (Object.keys(quantidade_carrinho).find(e => e === id_produto)) {
-        quantidade_carrinho[id_produto] += 1;
-        localStorage.setItem("quantidade_carrinho", JSON.stringify(quantidade_carrinho));
+    if (Object.keys(carrinho).find(e => e === id_produto)) {
+        carrinho[id_produto] += 1;
+        localStorage.setItem("carrinho", JSON.stringify(carrinho));
         return;
     }
-    quantidade_carrinho[id_produto] = 1;
-    localStorage.setItem("quantidade_carrinho", JSON.stringify(quantidade_carrinho));
+    carrinho[id_produto] = 1;
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
 
 function diminue_quantidade(elemento) {
     const id = elemento.attributes.name.value.replace("carrinho", "");
-    const quantidade_carrinho = JSON.parse(localStorage.getItem("quantidade_carrinho"));
-    if (quantidade_carrinho[id] === 1) return;
-    quantidade_carrinho[id] -= 1;
-    localStorage.setItem("quantidade_carrinho", JSON.stringify(quantidade_carrinho))
-    elemento.parentElement.children[1].innerText = `${quantidade_carrinho[id]}x`
-    if (quantidade_carrinho[id] === 1) {
+    const carrinho = JSON.parse(localStorage.getItem("carrinho"));
+    if (carrinho[id] === 1) return;
+    carrinho[id] -= 1;
+    localStorage.setItem("carrinho", JSON.stringify(carrinho))
+    elemento.parentElement.children[1].innerText = `${carrinho[id]}x`
+    if (carrinho[id] === 1) {
         elemento.classList.add("invisible");
     };
     const span_valor = elemento.parentElement.parentElement.parentElement.children[2].children[0];
-    span_valor.innerText = Number(span_valor.attributes.name.value * quantidade_carrinho[id]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
+    span_valor.innerText = Number(span_valor.attributes.name.value * carrinho[id]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
     atualiza_total();
 }
 
 function aumenta_quantidade(elemento) {
     const id = elemento.attributes.name.value.replace("carrinho", "");
-    const quantidade_carrinho = JSON.parse(localStorage.getItem("quantidade_carrinho"));
-    quantidade_carrinho[id] += 1;
-    localStorage.setItem("quantidade_carrinho", JSON.stringify(quantidade_carrinho));
+    const carrinho = JSON.parse(localStorage.getItem("carrinho"));
+    carrinho[id] += 1;
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
     elemento.parentElement.children[0].classList.remove("invisible");
-    elemento.parentElement.children[1].innerText = `${quantidade_carrinho[id]}x`;
+    elemento.parentElement.children[1].innerText = `${carrinho[id]}x`;
     const span_valor = elemento.parentElement.parentElement.parentElement.children[2].children[0];
-    span_valor.innerText = Number(span_valor.attributes.name.value * quantidade_carrinho[id]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    span_valor.innerText = Number(span_valor.attributes.name.value * carrinho[id]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
     atualiza_total();
 }
 
 function atualiza_total() {
-    const quantidade_carrinho = JSON.parse(localStorage.getItem("quantidade_carrinho"));
+    const carrinho = JSON.parse(localStorage.getItem("carrinho"));
     const produtos = JSON.parse(localStorage.getItem("produtos"));
     let valor_total = 0;
-    Object.keys(quantidade_carrinho).forEach(qc => {
-        valor_total += produtos.filter(p => p.id === qc)[0].preco * quantidade_carrinho[qc];
+    Object.keys(carrinho).forEach(qc => {
+        valor_total += produtos.filter(p => p.id === qc)[0].preco * carrinho[qc];
     })
     const total = document.getElementById("total")
     total.innerHTML = valor_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -133,16 +133,16 @@ function remove_produto_carrinho(elemento) {
     const id = elemento.attributes.name.value.replace("remove", "");
     const row_carrinho = elemento.parentElement.parentElement;
     row_carrinho.parentNode.removeChild(row_carrinho);
-    const quantidade_carrinho = JSON.parse(localStorage.getItem("quantidade_carrinho"));
-    delete quantidade_carrinho[id];
-    localStorage.setItem("quantidade_carrinho", JSON.stringify(quantidade_carrinho));
-    if (Object.keys(quantidade_carrinho).lengh === 1) {
+    const carrinho = JSON.parse(localStorage.getItem("carrinho"));
+    delete carrinho[id];
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    if (Object.keys(carrinho).lengh === 1) {
         const hrs = document.getElementsByClassName("hr-row-carrinho");
         const ultima_hr = hrs[hrs.length - 1];
         ultima_hr.parentNode.removeChild(ultima_hr);
     }
     atualiza_total();
-    if (JSON.stringify(quantidade_carrinho) === JSON.stringify({})) {
+    if (JSON.stringify(carrinho) === JSON.stringify({})) {
         mostrar_div_principal("carrinho-vazio");
     }
 }

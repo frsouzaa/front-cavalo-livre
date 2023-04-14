@@ -11,6 +11,12 @@
     /* width: 20vw; */
 }
 
+#btn-perfil {
+    box-shadow: none !important;
+    background-color: #198754 !important;
+    border-color: #198754 !important;
+}
+
 #input-pesquisar:focus {
     border-color: #dee2e6;
 }

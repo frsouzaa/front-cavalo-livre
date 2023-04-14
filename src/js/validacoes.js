@@ -19,15 +19,41 @@ function valida_form_login() {
     const res = valida_login_api(email.value, senha.value);
 
     if (!res) {
-        login_invalido.classList.add("d-block")
+        login_invalido.classList.add("d-block");
         return
     } else {
-        login_invalido.classList.remove("d-block")
+        const nav_carrinho = document.getElementById("nav-carrinho")
+        nav_carrinho.classList.add("d-none")
+        const perfil = document.getElementById("perfil");
+        perfil.classList.add("d-none")
+
+        const perfil_login = document.getElementById("perfil-login")
+        perfil_login.classList.remove("d-none")
+        const btn_perfil = document.getElementById("btn-perfil")
+        btn_perfil.innerHTML = `Olá, ${res.nome}`
+        const label_perfil = document.getElementById("label-perfil");
+        label_perfil.classList.remove("d-none");
+        label_perfil.innerHTML = `Olá, ${res.nome}`
+
+        const fechar_modal = document.getElementById("fechar-login");
+        fechar_modal.click()
+        
+        login_invalido.classList.remove("d-block");
+        localStorage.setItem("usuario", JSON.stringify(res));
     }
 }
 
 function valida_login_api(email, senha) {
     // todo
+    for (let i = 0; i < users.length; i++) {
+        if ((users[i].email === email) && (users[i].senha === senha)) {
+            return {
+                nome: users[i].nome,
+                email: users[i].email,
+                token: new Date()
+            }
+        }
+    }
     return false;
 }
 
@@ -58,15 +84,12 @@ function valida_form_cadastro() {
     valida_campo(confirmar_senha, confirmar_invalido, confirmar_senha.value !== senha.value);
     valida_campo(nascimento, nascimento_invalido, !nascimento.value);
 
-
-
     const res = cadastra(nome.value, sobrenome.value, cpf.value, email.value, senha.value);
-
 }
 
 function cadastra(nome, sobrenomw, cpf, email, senha) {
     // todo
-    return false;
+    return true;
 }
 
 function valida_form_esqueci() {

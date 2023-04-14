@@ -1,11 +1,12 @@
 function carregar_conteudo() {
+    handle_valida_usuario();
     const parametros = new URLSearchParams(window.location.search)
     if (parametros.get("produto")) {
         get_view_detalhes(parametros);
         mostrar_div_principal("detalhes-produto");
     } else if(parametros.get("carrinho")) {
-        let quantidade_carrinho = JSON.parse(localStorage.getItem("quantidade_carrinho"));
-        if (JSON.stringify(quantidade_carrinho) === JSON.stringify({})) {
+        let carrinho = JSON.parse(localStorage.getItem("carrinho"));
+        if (JSON.stringify(carrinho) === JSON.stringify({})) {
             mostrar_div_principal("carrinho-vazio")
         } else {
             get_view_carrinho();
@@ -30,6 +31,9 @@ function carregar_conteudo() {
             maxDate: new Date()
         }
     })
+
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     
     const max_z_index = get_max_z_index()
 
@@ -46,8 +50,54 @@ function carregar_conteudo() {
     login.style = `z-index: ${max_z_index+4}`;
 }
 
+function handle_valida_usuario() {
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    const nav_carrinho = document.getElementById("nav-carrinho");
+    const perfil = document.getElementById("perfil");
+    const perfil_login = document.getElementById("perfil-login");
+    const btn_perfil = document.getElementById("btn-perfil");
+    const label_perfil = document.getElementById("label-perfil");
+
+    if (!usuario) {
+        nav_carrinho.classList.remove("d-none");
+        perfil.classList.remove("d-none");
+        return;
+    }
+    res = valida_usuario_api(usuario.token);
+    
+    if (res) {
+        perfil_login.classList.remove("d-none");
+        btn_perfil.innerHTML = `Olá, ${res.nome}`;
+        label_perfil.classList.remove("d-none");
+        label_perfil.innerHTML = `Olá, ${res.nome}`;
+    } else {
+        nav_carrinho.classList.remove("d-none");
+        perfil.classList.remove("d-none");
+        const modal = new bootstrap.Modal("#modal-sessao-expirada");
+        modal.show();
+        localStorage.removeItem("usuario");
+    }
+
+}
+
+function valida_usuario_api(token) {
+    // todo
+
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    const agora = new Date();
+    const login = new Date(token);
+    if ((agora.getTime() - login.getTime()) / 1000 < 60) {
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].email === usuario.email) {
+                return users[i];
+            }
+        }
+    }
+}
+
 function get_produtos(lista_produtos) {
     // todo
+
     let res = [];
     if (!lista_produtos) {
         res = prod;
@@ -93,7 +143,23 @@ function render_lista_filtros() {
         </button>
         `;
     }
-    lista.innerHTML += `<br> <div class="row"> <div class="col-3"></div> <button class="btn btn-success col-6" onclick="busca()">Aplicar Filtros</button> <div class="col-3"></div> </div>`;
+    lista.innerHTML += `
+    <div class="row mt-3"> 
+        <div class="col-3"></div> 
+        <button class="btn btn-success col-6" onclick="busca()">
+            Aplicar Filtros
+        </button> 
+        <div class="col-3"></div> 
+    </div
+    <br>
+    <div class="row mt-3"> 
+        <div class="col-3"></div> 
+        <button class="btn btn-dark col-6" onclick="remover_filtros()">
+            Remover Filtros
+        </button> 
+        <div class="col-3"></div> 
+    </div>
+    `;
 }
 
 function montar_paises() {
@@ -263,3 +329,26 @@ const detalhe = {
         ]
     }
 }
+
+const users = [
+    {
+        email: "felipe@email.com", 
+        senha: "000",
+        nome: "Felipe",
+    },
+    {
+        email: "joao@email.com", 
+        senha: "000",
+        nome: "João",
+    },
+    {
+        email: "lucas@email.com", 
+        senha: "000",
+        nome: "Lucas",
+    },
+    {
+        email: "norton@email.com", 
+        senha: "000",
+        nome: "Norton",
+    },
+]

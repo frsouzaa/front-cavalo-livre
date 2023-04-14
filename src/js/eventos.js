@@ -10,10 +10,14 @@ function habilitar_filtro(elemento) {
     elemento.classList.toggle("filtro-ativo");
 }
 
-function handle_lupa_buscar() {
-    const pesquisa = document.getElementById("input-pesquisar");
-    localStorage.setItem("termo_busca", pesquisa.value);
-    busca()
+function remover_filtros() {
+    const filtros = document.getElementsByClassName("filtro-ativo");
+    const quantidade_filtros = filtros.length;
+    for (let i = 0; i < quantidade_filtros; i++) {
+        filtros[0].classList.remove("active");
+        filtros[0].classList.remove("filtro-ativo");
+    }
+    busca();
 }
 
 function busca(key="Enter") {
@@ -101,4 +105,9 @@ function abrir_inicio() {
     window.location.href = window.location.protocol + "//" +
     window.location.host +
     window.location.pathname;
+}
+
+function sair() {
+    localStorage.removeItem("usuario");
+    abrir_inicio();
 }
