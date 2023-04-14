@@ -2,7 +2,7 @@ function carregar_conteudo() {
     handle_valida_usuario();
     const parametros = new URLSearchParams(window.location.search)
     let carrinho = JSON.parse(localStorage.getItem("carrinho"));
-    if (carrinho instanceof Array) {
+    if (carrinho instanceof Array || !carrinho) {
         carrinho = {};
         localStorage.removeItem("carrinho")
     }
@@ -75,6 +75,7 @@ function handle_valida_usuario() {
     
     if (res) {
         perfil_login.classList.remove("d-none");
+        perfil.classList.add("d-none");
         btn_perfil.innerHTML = `Olá, ${res.nome}`;
         label_perfil.classList.remove("d-none");
         label_perfil.innerHTML = `Olá, ${res.nome}`;
@@ -94,7 +95,7 @@ function valida_usuario_api(token) {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
     const agora = new Date();
     const login = new Date(token);
-    if ((agora.getTime() - login.getTime()) / 1000 < 60) {
+    if ((agora.getTime() - login.getTime()) / 1000 < 120) {
         for (let i = 0; i < users.length; i++) {
             if (users[i].email === usuario.email) {
                 return users[i];
