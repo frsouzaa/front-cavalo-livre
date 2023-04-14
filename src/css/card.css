@@ -59,4 +59,14 @@
     margin: 0;
 }
 
+@media screen and (max-width : 950px) { 
+    .item-carrosel {
+        height: 400px;
+    }
+ }
 
+@media screen and (max-width : 500px) { 
+    .item-carrosel {
+        height: 330px;
+    }
+ }

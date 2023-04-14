@@ -55,3 +55,15 @@
 .fechar-busca:hover {
     cursor: pointer;
 }
+
+@media screen and (max-width : 950px) { 
+    .carousel-indicators {
+        top: 26em;
+    }  
+ }
+
+@media screen and (max-width : 500px) { 
+    .carousel-indicators {
+        top: 22em;
+    }    
+ }
