@@ -1,11 +1,15 @@
 function carregar_conteudo() {
     handle_valida_usuario();
     const parametros = new URLSearchParams(window.location.search)
+    let carrinho = JSON.parse(localStorage.getItem("carrinho"));
+    if (carrinho instanceof Array) {
+        carrinho = {};
+        localStorage.removeItem("carrinho")
+    }
     if (parametros.get("produto")) {
         get_view_detalhes(parametros);
         mostrar_div_principal("detalhes-produto");
     } else if(parametros.get("carrinho")) {
-        let carrinho = JSON.parse(localStorage.getItem("carrinho"));
         if (JSON.stringify(carrinho) === JSON.stringify({})) {
             mostrar_div_principal("carrinho-vazio")
         } else {
