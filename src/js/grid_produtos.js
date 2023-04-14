@@ -23,7 +23,7 @@ function render_cards(produtos) {
     let cards = ``;
     for (let i = 0; i < produtos.length; i++) {
         cards = ` ${cards}
-        <div class="div-card-produto col-12 col-md-6 col-lg-4 d-block" onclick="abrir_produto(this)" name="${produtos[i].id}">
+        <div class="div-card-produto col-12 col-md-6 col-xxl-4 d-block" onclick="abrir_produto(this)" name="${produtos[i].id}">
             <div class="produto">
                 <div class="div-imagem">
                     <img class="imagem" src="${produtos[i].imagem}">

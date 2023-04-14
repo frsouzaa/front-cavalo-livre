@@ -38,7 +38,7 @@
 <body onload="carregar_conteudo()">
     <div id="tudo">
 
-        <nav id="nav" class="navbar navbar-expand-lg bg-success fixed">
+        <nav id="nav" class="navbar navbar-expand-xl bg-success fixed">
             <div class="container">
                 <a href="#" class="navbar-brand text-light logo" onclick="abrir_inicio()">LOGO</a>
 
@@ -49,18 +49,18 @@
 
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <div id="menus" class="navbar-nav col-md-4">
-                        <span id="label-perfil" class="nav-link text-light d-none d-block d-lg-none"></span>
+                        <span id="label-perfil" class="nav-link text-light d-none d-block d-xl-none"></span>
                         <a class="nav-link text-light" href="#" onclick="abrir_inicio()">Vitrine </a>
                         <a class="nav-link text-light d-none" href="#" onclick="abrir_carrinho()" id="nav-carrinho">Carrinho</a>
                         <div id="perfil">
-                            <span class="d-none d-sm-block" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
-                                <a class="nav-link text-light d-none" href="#" data-bs-toggle="modal" data-bs-target="#login">Fazer login</a>
+                            <span class="d-block d-md-none" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
+                                <a class="nav-link text-light" href="#" data-bs-toggle="modal" data-bs-target="#login">Fazer login</a>
                             </span>
-                            <a class="nav-link text-light d-none d-none d-lg-block" href="#" data-bs-toggle="modal" data-bs-target="#login">Fazer login</a>
+                            <a class="nav-link text-light d-none d-none d-xl-block" href="#" data-bs-toggle="modal" data-bs-target="#login">Fazer login</a>
                         </div>
                         
                         <div id="perfil-login" class="d-none">
-                            <div class="btn-group dropdown d-none d-lg-block">
+                            <div class="btn-group dropdown d-none d-xl-block">
                                 <button id="btn-perfil" type="button" class="nav-link text-light btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     
                                 </button>
@@ -69,12 +69,12 @@
                                     <li><a class="nav-link text-dark" href="#" onclick="sair()">Sair</a></li>
                                 </ul>
                             </div>
-                            <a class="nav-link text-light d-block d-lg-none" href="#" onclick="abrir_carrinho()">Seu Carrinho</a>
-                            <a class="nav-link text-light d-block d-lg-none" href="#" onclick="sair()">Sair</a>
+                            <a class="nav-link text-light d-block d-xl-none" href="#" onclick="abrir_carrinho()">Seu Carrinho</a>
+                            <a class="nav-link text-light d-block d-xl-none" href="#" onclick="sair()">Sair</a>
                         </div>    
                     </div>
                     <div class="col-sm-12 col-md-3">
-                        <marquee class="text-light align-middle d-none d-block">
+                        <marquee class="text-light align-middle d-none d-xl-block">
                             <b>
                                 <span class="material-symbols-outlined align-middle">
                                     nature
@@ -233,7 +233,7 @@
             <!-- Produtos -->
             <div id="grid-produtos" class="d-none">
                 <div class="row">
-                    <div class="mx-auto d-block d-lg-none">
+                    <div class="mx-auto d-block d-xl-none">
                         <div class="d-flex">
                             <button class="btn-filtros btn btn-success mx-auto" type="button" data-bs-toggle="offcanvas"
                                 data-bs-target="#filtros">
@@ -247,17 +247,17 @@
                     <!-- <div class="col-md-1">
         
                         </div> -->
-                    <div class="col-3 d-none d-lg-block">
+                    <div class="col-3 d-none d-xl-block">
                         <div id="lista-filtros" class="d-block list-group">
                             <div class="row">
                                 <span class="h4 w-auto mx-auto">Filtrar por:</span>
                             </div>
                         </div>
                     </div>
-                    <div id="produtos" class="col-12 col-lg-9 d-block">
+                    <div id="produtos" class="col-12 col-xl-9 d-block">
 
                     </div>
-                    <div id="produtos-busca" class="col-12 col-lg-9 d-none">
+                    <div id="produtos-busca" class="col-12 col-xl-9 d-none">
 
                     </div>
                 </div>
@@ -266,7 +266,7 @@
 
 
         <!-- Footer -->
-        <footer id="footer" class="text-white text-center text-lg-start">
+        <footer id="footer" class="text-white text-center text-xl-start">
             <div class="container p-4">
                 <div class="row">
                     <div class="col-md-6">
@@ -370,7 +370,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <button type="button" class="btn btn-success col-md-10 btn-lg" onclick="valida_form_login()">Entrar</button>
+                        <button type="button" class="btn btn-success col-md-10 btn-xl" onclick="valida_form_login()">Entrar</button>
                         <div class="col-md-1"></div>
                     </div>
                     <div class="row">
@@ -502,7 +502,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <button type="button" class="btn btn-success col-md-10 btn-lg" onclick="valida_form_cadastro()">Fazer Cadastro</button>
+                        <button type="button" class="btn btn-success col-md-10 btn-xl" onclick="valida_form_cadastro()">Fazer Cadastro</button>
                         <div class="col-md-1"></div>
                     </div>
                     <div class="row">
@@ -556,7 +556,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <button type="button" class="btn btn-success col-md-10 btn-lg" onclick="valida_form_esqueci()">Enviar</button>
+                        <button type="button" class="btn btn-success col-md-10 btn-xl" onclick="valida_form_esqueci()">Enviar</button>
                         <div class="col-md-1"></div>
                     </div>
                     <div class="row">

@@ -24,17 +24,17 @@ function render_carrinho(produtos) {
 function render_linha_carrinho(produto) {
     return `
     <div class="row row-produto-carrinho">
-        <div class="col-md-6 d-block d-lg-flex">
+        <div class="col-md-6 d-block d-xl-flex">
             <div class="produto-carrinho d-flex justify-content-center">
                 <div class="div-imagem-carrinho col-md-6">
                     <img class="imagem" src="${produto.imagem}">
                 </div>
             </div>
-            <div class="d-flex p-2 p-lg-3 justify-content-center">
+            <div class="d-flex p-2 p-xl-3 justify-content-center">
                 <span class="fs-4 ">${produto.nome}</span>
             </div>
         </div>
-        <div class="col-md-3 d-flex flex-column p-0 p-lg-3">
+        <div class="col-md-3 d-flex flex-column p-0 p-xl-3">
             <div class="mx-auto">
                 <button class="btn arrow-btn ${produto.quantidade === 1 ? "invisible" : ""}" name="carrinho${produto.id}" onclick="diminue_quantidade(this)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#198754" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16">
@@ -55,7 +55,7 @@ function render_linha_carrinho(produto) {
                 </svg>
             </button>
         </div>
-        <div class="col-md-3 d-flex flex-column p-0 p-lg-3">
+        <div class="col-md-3 d-flex flex-column p-0 p-xl-3">
             <span class="mx-auto fs-5" name="${produto.preco}">${(produto.preco*produto.quantidade).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span> 
         </div>
         <hr class="hr-row-carrinho mt-3">
