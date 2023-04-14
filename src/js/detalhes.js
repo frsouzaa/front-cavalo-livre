@@ -50,4 +50,11 @@ function render_detalhes(produto) {
 
     document.getElementsByClassName("carousel-item")[0].classList.add("active")
     document.getElementsByClassName("indicador")[0].classList.add("active")
+    document.getElementsByClassName("indicador")[0].click()
+    if (produto.imagens.length <= 1) {
+        const controles = document.getElementsByClassName("controle-carrosel")
+        for (let i = 0; i < controles.length; i++) {
+            controles[i].classList.remove("d-md-flex");
+        }
+    }
 }
