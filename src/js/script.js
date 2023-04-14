@@ -239,7 +239,7 @@ const prod = [
     {
         id: "sementes",
         nome: "2Kg de sementes diversas",
-        preco: 20.045,
+        preco: 20.45,
         categorias: ["Platação"],
         imagem: "https://www.infoescola.com/wp-content/uploads/2010/10/sementes-110365694.jpg"
     }

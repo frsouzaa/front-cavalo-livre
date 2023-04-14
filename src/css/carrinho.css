@@ -8,6 +8,7 @@ div.div-imagem-carrinho {
 }
 
 .row-produto-carrinho {
+    margin-bottom: 0 !important;
     margin-bottom: 2em;
 }
 

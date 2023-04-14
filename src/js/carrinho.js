@@ -58,7 +58,7 @@ function render_linha_carrinho(produto) {
         <div class="col-md-3 d-flex flex-column p-0 p-lg-3">
             <span class="mx-auto fs-5" name="${produto.preco}">${(produto.preco*produto.quantidade).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span> 
         </div>
-        <hr class="hr-row-carrinho mt-4">
+        <hr class="hr-row-carrinho mt-3">
     </div>
     `
 }
@@ -102,7 +102,7 @@ function diminue_quantidade(elemento) {
         elemento.classList.add("invisible");
     };
     const span_valor = elemento.parentElement.parentElement.parentElement.children[2].children[0];
-    span_valor.innerText = Number(span_valor.attributes.name.value * carrinho[id]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) 
+    span_valor.innerText = Number(span_valor.attributes.name.value * carrinho[id]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) ;
     atualiza_total();
 }
 
@@ -114,7 +114,7 @@ function aumenta_quantidade(elemento) {
     elemento.parentElement.children[0].classList.remove("invisible");
     elemento.parentElement.children[1].innerText = `${carrinho[id]}x`;
     const span_valor = elemento.parentElement.parentElement.parentElement.children[2].children[0];
-    span_valor.innerText = Number(span_valor.attributes.name.value * carrinho[id]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+    span_valor.innerText = Number(span_valor.attributes.name.value * carrinho[id]).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     atualiza_total();
 }
 
@@ -126,7 +126,7 @@ function atualiza_total() {
         valor_total += produtos.filter(p => p.id === qc)[0].preco * carrinho[qc];
     })
     const total = document.getElementById("total")
-    total.innerHTML = valor_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    total.innerHTML = `Total: ${valor_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
 }
 
 function remove_produto_carrinho(elemento) {
@@ -136,10 +136,10 @@ function remove_produto_carrinho(elemento) {
     const carrinho = JSON.parse(localStorage.getItem("carrinho"));
     delete carrinho[id];
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
-    if (Object.keys(carrinho).lengh === 1) {
-        const hrs = document.getElementsByClassName("hr-row-carrinho");
-        const ultima_hr = hrs[hrs.length - 1];
-        ultima_hr.parentNode.removeChild(ultima_hr);
+    const hrs = document.getElementsByClassName("hr-row-carrinho");
+    const rows = document.getElementsByClassName("row-produto-carrinho");
+    if (rows.length === hrs.length && hrs.length !== 0) {
+        hrs[hrs.length-1].parentNode.removeChild(hrs[hrs.length-1]);
     }
     atualiza_total();
     if (JSON.stringify(carrinho) === JSON.stringify({})) {
