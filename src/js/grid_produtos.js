@@ -1,5 +1,5 @@
-function get_view_grid_produtos() {
-    const produtos = get_produtos();
+async function get_view_grid_produtos() {
+    const produtos = await get_produtos();
     localStorage.removeItem('produtos');
     localStorage.setItem("produtos", JSON.stringify(produtos));
     render_grid_produtos();
@@ -26,7 +26,7 @@ function render_cards(produtos) {
         <div class="div-card-produto col-12 col-md-6 col-xxl-4 d-block" onclick="abrir_produto(this)" name="${produtos[i].id}">
             <div class="produto">
                 <div class="div-imagem">
-                    <img class="imagem" src="${produtos[i].imagem}">
+                    <img class="imagem" src="${produtos[i].imagens[0]}">
                 </div>
                 <div class="interacao row">
                     <div class="informacoes col-12">                                    

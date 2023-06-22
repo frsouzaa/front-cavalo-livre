@@ -57,7 +57,7 @@ function valida_login_api(email, senha) {
     return false;
 }
 
-function valida_form_cadastro() {
+async function valida_form_cadastro() {
     const nome = document.getElementById("nome-cadastro");
     const sobrenome = document.getElementById("sobrenome-cadastro");
     const cpf = document.getElementById("cpf-cadastro");
@@ -65,6 +65,9 @@ function valida_form_cadastro() {
     const senha = document.getElementById("senha-cadastro");
     const confirmar_senha = document.getElementById("confirmar-senha-cadastro");
     const nascimento = document.getElementById("datetimepicker1");
+    const pais = document.getElementById("pais");
+    const feminino = document.getElementById("feminino");
+    const masculino = document.getElementById("masculino");
     
     const nome_invalido = document.getElementById("nome-cadastro-invalido");
     const sobrenome_invalido = document.getElementById("sobrenome-cadastro-invalido");
@@ -76,20 +79,66 @@ function valida_form_cadastro() {
     
     const regexEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+((\.[a-z]+)+)?$/i;
 
-    valida_campo(nome, nome_invalido, !nome.value);
-    valida_campo(sobrenome, sobrenome_invalido, !sobrenome.value);
-    valida_campo(cpf, cpf_invalido, !TestaCPF(cpf.value));
-    valida_campo(email, email_invalido, !regexEmail.test(email.value));
-    valida_campo(senha, senha_invalido, !senha.value);
-    valida_campo(confirmar_senha, confirmar_invalido, confirmar_senha.value !== senha.value);
-    valida_campo(nascimento, nascimento_invalido, !nascimento.value);
+    let valido = true;
+    valido = valida_campo(nome, nome_invalido, !nome.value) && valido;
+    valido = valida_campo(sobrenome, sobrenome_invalido, !sobrenome.value) && valido;
+    valido = valida_campo(cpf, cpf_invalido, !TestaCPF(cpf.value)) && valido;
+    valido = valida_campo(email, email_invalido, !regexEmail.test(email.value)) && valido;
+    valido = valida_campo(senha, senha_invalido, !senha.value) && valido;
+    valido = valida_campo(confirmar_senha, confirmar_invalido, confirmar_senha.value !== senha.value) && valido;
+    valido = valida_campo(nascimento, nascimento_invalido, !nascimento.value) && valido;
 
-    const res = cadastra(nome.value, sobrenome.value, cpf.value, email.value, senha.value);
+    let sexo;
+    if (feminino.checked) {
+        sexo = "F";
+    } else if (masculino.checked) {
+        sexo = "M";
+    } else {
+        sexo = "NI";
+    }
+
+    if (valido) {
+        const res = await cadastra(nome.value, sobrenome.value, cpf.value, email.value, senha.value, sexo, nascimento.value, pais.value);
+        if (res === true) {
+            const btn_fechar = document.getElementById("fechar-cadastro");
+            btn_fechar.click();
+            const modal = new bootstrap.Modal("#modal-cadastrado");
+            modal.show();
+            setTimeout(() => {
+                modal.hide();
+            }, 3000)
+        }
+    }
 }
 
-function cadastra(nome, sobrenomw, cpf, email, senha) {
-    // todo
-    return true;
+async function cadastra(nome, sobrenome, cpf, email, senha, sexo, nascimento, pais) {
+    const data = {
+        data: {
+            nome: nome,
+            sobrenome: sobrenome,
+            cpf: cpf,
+            email: email,
+            senha: senha,
+            sexo: sexo,
+            nascimento: nascimento,
+            pais: pais
+        }
+    }
+    return await fetch(`${base_url}/cadastro`, 
+        {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        }
+    )
+    .then(response => {
+        res = response.json();
+        return true;
+    })
+    .catch(e => {
+        console.log(e);
+        return false;
+    });
 }
 
 function valida_form_esqueci() {
@@ -106,9 +155,11 @@ function valida_campo(input, span, expressao) {
     if (expressao) {
         span.classList.add("d-block")
         input.classList.add("input-erro")
+        return false;
     } else {
         span.classList.remove("d-block")
         input.classList.remove("input-erro")
+        return true;
     }
 }
 

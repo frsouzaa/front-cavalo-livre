@@ -1,6 +1,6 @@
-function get_view_detalhes(parametros) {
-    const produto = get_detalhes_produto(parametros.get("produto"));
-    render_detalhes(produto);
+async function get_view_detalhes(parametros) {
+    const produto = await get_produtos([parametros.get("produto")]);
+    render_detalhes(produto[0]);
     return;
 }
 

@@ -1,6 +1,6 @@
-function get_view_carrinho() {
+async function get_view_carrinho() {
     let carrinho = JSON.parse(localStorage.getItem("carrinho"));
-    produtos = get_produtos(Object.keys(carrinho));
+    produtos = await get_produtos(Object.keys(carrinho));
     for (let i = 0; i < produtos.length; i++) {
         produtos[i].quantidade = carrinho[produtos[i].id]
     }
@@ -27,7 +27,7 @@ function render_linha_carrinho(produto) {
         <div class="col-md-6 d-block d-xl-flex">
             <div class="produto-carrinho d-flex justify-content-center">
                 <div class="div-imagem-carrinho col-md-6">
-                    <img class="imagem" src="${produto.imagem}">
+                    <img class="imagem" src="${produto.imagens[0]}">
                 </div>
             </div>
             <div class="d-flex p-2 p-xl-3 justify-content-center">
