@@ -1,5 +1,5 @@
 async function carregar_conteudo() {
-    // handle_valida_usuario();
+    handle_valida_usuario();
     const parametros = new URLSearchParams(window.location.search)
     let carrinho = JSON.parse(localStorage.getItem("carrinho"));
     if (carrinho instanceof Array || !carrinho) {
@@ -74,37 +74,21 @@ function handle_valida_usuario() {
         perfil.classList.remove("d-none");
         return;
     }
-    res = valida_usuario_api(usuario.token);
-    
-    if (res) {
+
+    if (usuario.nome) {
         perfil_login.classList.remove("d-none");
         perfil.classList.add("d-none");
-        btn_perfil.innerHTML = `Olá, ${res.nome}`;
+        btn_perfil.innerHTML = `Olá, ${usuario.nome}`;
         label_perfil.classList.remove("d-none");
-        label_perfil.innerHTML = `Olá, ${res.nome}`;
+        label_perfil.innerHTML = `Olá, ${usuario.nome}`;
     } else {
         nav_carrinho.classList.remove("d-none");
         perfil.classList.remove("d-none");
-        const modal = new bootstrap.Modal("#modal-sessao-expirada");
-        modal.show();
+        // const modal = new bootstrap.Modal("#modal-sessao-expirada");
+        // modal.show();
         localStorage.removeItem("usuario");
     }
 
-}
-
-function valida_usuario_api(token) {
-    // todo
-
-    const usuario = JSON.parse(localStorage.getItem("usuario"));
-    const agora = new Date();
-    const login = new Date(token);
-    if ((agora.getTime() - login.getTime()) / 1000 < 120) {
-        for (let i = 0; i < users.length; i++) {
-            if (users[i].email === usuario.email) {
-                return users[i];
-            }
-        }
-    }
 }
 
 async function get_produtos(lista_produtos)  {
@@ -233,28 +217,5 @@ function limpar_formularios() {
         inputs[i].value = "";
     }
 }
-
-const users = [
-    {
-        email: "felipe@email.com", 
-        senha: "000",
-        nome: "Felipe",
-    },
-    {
-        email: "joao@email.com", 
-        senha: "000",
-        nome: "João",
-    },
-    {
-        email: "lucas@email.com", 
-        senha: "000",
-        nome: "Lucas",
-    },
-    {
-        email: "norton@email.com", 
-        senha: "000",
-        nome: "Norton",
-    },
-]
 
 const base_url = "http://127.0.0.1:5005";

@@ -1,9 +1,10 @@
-function valida_form_login() {
+async function valida_form_login() {
     const email = document.getElementById("email-login");
     const senha = document.getElementById("senha-login");
     
     const email_invalido = document.getElementById("email-login-invalido");
     const login_invalido = document.getElementById("login-invalido");
+    login_invalido.classList.remove("d-block");
     
     const regexEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+((\.[a-z]+)+)?$/i;
 
@@ -16,9 +17,9 @@ function valida_form_login() {
         email.classList.remove("input-erro")
     }
 
-    const res = valida_login_api(email.value, senha.value);
+    const res = await valida_login_api(email.value, senha.value);
 
-    if (!res) {
+    if (!res || !res.data || res.menssagem) {
         login_invalido.classList.add("d-block");
         return
     } else {
@@ -30,31 +31,43 @@ function valida_form_login() {
         const perfil_login = document.getElementById("perfil-login")
         perfil_login.classList.remove("d-none")
         const btn_perfil = document.getElementById("btn-perfil")
-        btn_perfil.innerHTML = `Olá, ${res.nome}`
+        btn_perfil.innerHTML = `Olá, ${res.data.nome}`
         const label_perfil = document.getElementById("label-perfil");
         label_perfil.classList.remove("d-none");
-        label_perfil.innerHTML = `Olá, ${res.nome}`
+        label_perfil.innerHTML = `Olá, ${res.data.nome}`
 
         const fechar_modal = document.getElementById("fechar-login");
         fechar_modal.click()
         
         login_invalido.classList.remove("d-block");
-        localStorage.setItem("usuario", JSON.stringify(res));
+        localStorage.setItem("usuario", JSON.stringify(res.data));
     }
 }
 
-function valida_login_api(email, senha) {
-    // todo
-    for (let i = 0; i < users.length; i++) {
-        if ((users[i].email === email) && (users[i].senha === senha)) {
-            return {
-                nome: users[i].nome,
-                email: users[i].email,
-                token: new Date()
-            }
+async function valida_login_api(email, senha) {
+    const data = {
+        "data": {
+            "email": email,
+            "senha": senha
         }
     }
-    return false;
+    return await fetch(`${base_url}/login`, 
+        {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        }
+    )
+    .then(response => {
+        res = response.json();
+        return res;
+    })
+    .catch(e => {
+        console.log(e);
+        return {
+            "menssagem": "login ou senha inválidos"
+        };
+    });
 }
 
 async function valida_form_cadastro() {
