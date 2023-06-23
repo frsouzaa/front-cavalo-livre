@@ -146,3 +146,94 @@ function remove_produto_carrinho(elemento) {
         mostrar_div_principal("carrinho-vazio");
     }
 }
+
+async function finalizar() {
+    const carrinho = JSON.parse(localStorage.getItem("carrinho"));
+    let usuario = JSON.parse(localStorage.getItem("usuario"));
+    if (!usuario) {
+        document.getElementById("confirmacao-msg").innerHTML = "Faça login para continuar";
+        const modal = new bootstrap.Modal("#modal-confirmacao");
+        modal.show();
+        setTimeout(() => {
+            modal.hide();
+        }, 1500)
+        return;
+    }
+    let produtos = [];
+    for (key in carrinho) {
+        produtos.push({
+            "id": key,
+            "quantidade": carrinho[key]
+        })
+    }
+    while (true) {
+        const data = {
+            "data": {
+                "usuario": usuario.email,
+                "produtos": produtos
+            }
+        }
+        const res = await fetch(`${base_url}/pedido`, 
+        {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": `Bearer ${usuario.token}`
+            }
+        })
+        .then(response => {
+            return response
+        })
+        .catch(e => {
+            return {
+                "msg": "Erro"
+            }
+        });
+    
+        const msg = document.getElementById("confirmacao-msg");
+        if (res.msg !== "Erro" && res.status == 200) {
+            msg.innerHTML = "O seu pedido foi gravado com sucesso.";
+        } else if (res.status == 401) {
+            let data = {
+                "data": {
+                    "email": usuario.email,
+                    "senhaC": usuario.senha
+                }
+            }
+            const res = await fetch(`${base_url}/login`, 
+                {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                    headers: {"Content-type": "application/json; charset=UTF-8"}
+                }
+            )
+            .then(response => {
+                r = response.json();
+                return r;
+            })
+            .catch(e => {
+                console.log(e);
+                return {
+                    "menssagem": "login ou senha inválidos"
+                };
+            });
+        
+            if (res.data) {
+                localStorage.setItem("usuario", JSON.stringify(res.data));
+                usuario = JSON.parse(localStorage.getItem("usuario"));
+                continue;
+            } else {
+                msg.innerHTML = "Erro ao gravar o pedido, tente novamente mais tarde."
+            }
+        } else {
+            msg.innerHTML = "Erro ao gravar o pedido, tente novamente mais tarde."
+        }
+        break;
+    }
+    const modal = new bootstrap.Modal("#modal-confirmacao");
+    modal.show();
+    setTimeout(() => {
+        modal.hide();
+    }, 3000)
+}

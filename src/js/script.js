@@ -1,5 +1,4 @@
 async function carregar_conteudo() {
-    handle_valida_usuario();
     const parametros = new URLSearchParams(window.location.search)
     let carrinho = JSON.parse(localStorage.getItem("carrinho"));
     if (carrinho instanceof Array || !carrinho) {
@@ -22,7 +21,8 @@ async function carregar_conteudo() {
         await get_view_grid_produtos();
         mostrar_div_principal("grid-produtos")
     }
-
+    
+    handle_valida_usuario();
     montar_paises()
     new tempusDominus.TempusDominus(document.getElementById('datetimepicker1'),
     {
@@ -84,8 +84,6 @@ function handle_valida_usuario() {
     } else {
         nav_carrinho.classList.remove("d-none");
         perfil.classList.remove("d-none");
-        // const modal = new bootstrap.Modal("#modal-sessao-expirada");
-        // modal.show();
         localStorage.removeItem("usuario");
     }
 
@@ -218,4 +216,4 @@ function limpar_formularios() {
     }
 }
 
-const base_url = "http://127.0.0.1:5005";
+const base_url = "http://127.0.0.1:8000";

@@ -45,10 +45,7 @@
     border-color: #ff0000 !important;
 }
 
-#modal-sessao-expirada {
-    top: 5em;
-}
 
-#modal-cadastrado {
+#modal-cadastrado, #modal-email, #modal-confirmacao {
     top: 5em;
 }

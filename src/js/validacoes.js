@@ -17,7 +17,30 @@ async function valida_form_login() {
         email.classList.remove("input-erro")
     }
 
-    const res = await valida_login_api(email.value, senha.value);
+    let data = {
+        "data": {
+            "email": email.value,
+            "senha": senha.value
+        }
+    }
+
+    const res = await fetch(`${base_url}/login`, 
+        {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+        }
+    )
+    .then(response => {
+        r = response.json();
+        return r;
+    })
+    .catch(e => {
+        console.log(e);
+        return {
+            "menssagem": "login ou senha inválidos"
+        };
+    });
 
     if (!res || !res.data || res.menssagem) {
         login_invalido.classList.add("d-block");
@@ -42,32 +65,6 @@ async function valida_form_login() {
         login_invalido.classList.remove("d-block");
         localStorage.setItem("usuario", JSON.stringify(res.data));
     }
-}
-
-async function valida_login_api(email, senha) {
-    const data = {
-        "data": {
-            "email": email,
-            "senha": senha
-        }
-    }
-    return await fetch(`${base_url}/login`, 
-        {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-        }
-    )
-    .then(response => {
-        res = response.json();
-        return res;
-    })
-    .catch(e => {
-        console.log(e);
-        return {
-            "menssagem": "login ou senha inválidos"
-        };
-    });
 }
 
 async function valida_form_cadastro() {
@@ -154,14 +151,55 @@ async function cadastra(nome, sobrenome, cpf, email, senha, sexo, nascimento, pa
     });
 }
 
-function valida_form_esqueci() {
+async function valida_form_esqueci() {
     const email = document.getElementById("email-esqueci-senha");
     
     const email_invalido = document.getElementById("email-esqueci-invalido");
     
     const regexEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+((\.[a-z]+)+)?$/i;
 
-    valida_campo(email, email_invalido, !regexEmail.test(email.value))
+    const validado = valida_campo(email, email_invalido, !regexEmail.test(email.value))
+
+    if (!validado) {
+        return
+    }
+
+    const data = {
+        "data": {
+            "usuario": email.value
+        }
+    }
+
+    const res = await fetch(`${base_url}/recuperar_senha`, 
+    {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8",
+        }
+    })
+    .then(response => {
+        return response;
+    })
+    .catch(e => {
+        return {
+            "msg": "Erro"
+        }
+    });
+
+    const btn_fechar = document.getElementById("fechar-redefinir");
+    const msg = document.getElementById("email-msg");
+    if (res.msg !== "Erro" && res.status == 200) {
+        msg.innerHTML = "Sua nova senha foi enviada no e-mail informado.";
+    } else {
+        msg.innerHTML = "Erro ao enviar o e-mail de recuperação de senha, tente novamente mais tarde."
+    }
+    btn_fechar.click();
+    const modal = new bootstrap.Modal("#modal-email");
+    modal.show();
+    setTimeout(() => {
+        modal.hide();
+    }, 3000)
 }
 
 function valida_campo(input, span, expressao) {
